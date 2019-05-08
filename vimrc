@@ -107,16 +107,6 @@ set wrapmargin=0 " Wrap margin
 set scrolloff=4   " Lines above and below cursor
 set sidescroll=1  " Horizontal number of columns to scroll
 
-" --- Indentation Shortcuts ---
-" Press <Tab> in visual mode to indent
-vnoremap <Tab> >gv
-" Press <Shift-Tab> in visual mode to unindent
-vnoremap <S-Tab> <gv
-" <Tab> in normal mode to indent
-nnoremap <Tab> :call TabQuickFix('next')<Enter>
-" <Shift-Tab> in normal mode to unindent
-nnoremap <S-Tab> :call TabQuickFix('prev')<Enter>
-
 
 " ==============================================================================
 " GENERAL SHORTCUTS
@@ -186,23 +176,6 @@ nmap gV `[v`]
 " ==============================================================================
 " NAVIGATION
 " ==============================================================================
-
-" --- QuickFix Shortcuts ---
-function TabQuickFix(dir)
-	if bufname("%") =~ '^fugitive://'
-		if a:dir == 'next'
-			cnext
-		elseif a:dir == 'prev'
-			cprev
-		endif
-	else
-		if a:dir == 'next'
-			normal! >>
-		elseif a:dir == 'prev'
-			normal! <<
-		endif
-	endif
-endfunction
 
 " Jump forward/backward
 nnoremap <C-l> <C-i>
