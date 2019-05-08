@@ -1,4 +1,7 @@
 
+#extends systemverilog
+#extends verilog
+
 snippet cg "covergroup" b
 covergroup cg_${1:covergroup_name};
 endgroup : cg_$1
@@ -17,7 +20,7 @@ endsnippet
 
 snippet class "class" b
 class ${1:class_name} extends ${2:uvm_object};
-  \`uvm_component_utils($1)
+	\`uvm_component_utils($1)
 endclass : $1
 endsnippet
 
@@ -32,7 +35,38 @@ endsnippet
 
 snippet new "new() function definition" b
 function ${1:class_name}::new(string name="", uvm_component parent=null);
-  super.new(name, parent);
+	super.new(name, parent);
 endfunction : new
+endsnippet
+
+snippet if "if"
+if(${1}) begin
+	${0}
+end
+endsnippet
+
+snippet eif "else if"
+else if(${1}) begin
+	${0}
+end
+endsnippet
+
+snippet el
+else begin
+	${0}
+end
+endsnippet
+
+snippet ifdef "ifdef" b
+\`ifdef ${1:MACRO_NAME}
+	${0}
+\`endif // $1
+endsnippet
+
+snippet ifndef "ifndef" b
+\`ifndef ${1:MACRO_NAME}
+\`define $1
+	${0}
+\`endif // $1
 endsnippet
 
