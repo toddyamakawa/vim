@@ -1,0 +1,88 @@
+
+# REVISIT: This stuff doesn't appear to be working
+#extends systemverilog
+#extends verilog
+
+snippet class "class" b
+class ${1:class_name} extends ${2:uvm_object};
+	uvm_component_utils($1)
+endclass : $1
+endsnippet
+
+snippet function "function" b
+function ${1:function_name}();
+endfunction : $1
+endsnippet
+
+snippet new "new() function prototype" b
+extern function new(string name="", uvm_component parent=null);
+endsnippet
+
+snippet new "new() function definition" b
+function ${1:class_name}::new(string name="", uvm_component parent=null);
+	super.new(name, parent);
+endfunction : new
+endsnippet
+
+snippet if "if"
+if(${1}) begin
+	${0}
+end
+endsnippet
+
+snippet eif "else if"
+else if(${1}) begin
+	${0}
+end
+endsnippet
+
+snippet el
+else begin
+	${0}
+end
+endsnippet
+
+snippet ifdef "ifdef" b
+\`ifdef ${1:MACRO_NAME}
+	${0}
+\`endif // \`ifdef $1
+endsnippet
+
+snippet ifndef "ifndef" b
+\`ifndef ${1:MACRO_NAME}
+\`define $1
+	${0}
+\`endif // \`ifndef $1
+endsnippet
+
+
+# ==============================================================================
+# RANDOMIZATION
+# ==============================================================================
+snippet constraint "constraint" b
+constraint c_${1:constraint_name} {
+	$1 dist {
+	};
+}
+endsnippet
+
+
+# ==============================================================================
+# COVERAGE
+# ==============================================================================
+snippet cg "covergroup" b
+covergroup cg_${1:covergroup_name};
+endgroup : cg_$1
+endsnippet
+
+snippet cg "covergroup with sample()" b
+covergroup cg_${1:covergroup_name} with function sample(${2:inputs});
+endgroup : cg_$1
+endsnippet
+
+snippet cp "coverpoint" b
+cp_${1:coverpoint_name} : coverpoint ${2:variable} iff(${3:expression})
+{
+}
+endsnippet
+

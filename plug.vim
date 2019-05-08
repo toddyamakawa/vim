@@ -62,7 +62,8 @@ let g:UltiSnipsListSnippets="<F2>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Directory configuration
-let g:UltiSnipsSnippetDirectories = ['~/.vim/snippets', 'UltiSnips']
+let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
+let g:UltiSnipsSnippetDirectories = ['~/.vim/ultisnips', 'ultisnips']
 
 " Recommended snippets
 Plug 'honza/vim-snippets'
