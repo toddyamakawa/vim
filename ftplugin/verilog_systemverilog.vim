@@ -1,0 +1,1 @@
+UltiSnipsAddFiletypes verilog_systemverilog

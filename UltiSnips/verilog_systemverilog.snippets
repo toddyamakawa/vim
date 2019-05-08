@@ -21,6 +21,11 @@ class ${1:class_name} extends ${2:uvm_object};
 endclass : $1
 endsnippet
 
+snippet function "function" b
+function ${1:function_name}();
+endfunction : $1
+endsnippet
+
 snippet new "new() function prototype" b
 extern function new(string name="", uvm_component parent=null);
 endsnippet
