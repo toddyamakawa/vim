@@ -4,7 +4,6 @@ if exists('g:loaded_my_map_tab')
 endif
 let g:loaded_my_map_tab = 1
 
-" This plugin is in after to overwrite UltiSnips
 
 " --- QuickFix Shortcuts ---
 function TabQuickFix(dir)
@@ -28,13 +27,18 @@ endfunction
 " KEY MAPPINGS
 " ==============================================================================
 
-" Press <Tab> in visual mode to indent
+" Overwrite visual mode tab behavior from UltiSnips
+
+" <Tab>/<S-Tab> to indent/unindent
 xnoremap <Tab> >gv
-" Press <Shift-Tab> in visual mode to unindent
 xnoremap <S-Tab> <gv
 
-" <Tab> in normal mode to indent
+" <Tab>/<S-Tab> to indent/unindent
 nnoremap <Tab> :call TabQuickFix('next')<Enter>
-" <Shift-Tab> in normal mode to unindent
 nnoremap <S-Tab> :call TabQuickFix('prev')<Enter>
+
+" --- UltiSnips ---
+" Restore ultisnips utility
+" Mnemonic: Change-UltiSnip
+xnoremap cu :call UltiSnips#SaveLastVisualSelection()<CR>gvs
 
