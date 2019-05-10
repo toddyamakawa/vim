@@ -9,9 +9,22 @@ class ${1:class_name} extends ${2:uvm_object};
 endclass : $1
 endsnippet
 
+snippet extern "extern function" b
+extern function ${1:function_name}($0);
+endsnippet
+
+snippet extern "extern task" b
+extern task ${1:task_name}($0);
+endsnippet
+
 snippet function "function" b
 function ${1:function_name}();
 endfunction : $1
+endsnippet
+
+snippet task "task" b
+task ${1:task_name}();
+endtask : $1
 endsnippet
 
 snippet new "new() function prototype" b
@@ -40,6 +53,29 @@ snippet el
 else begin
 	${0}
 end
+endsnippet
+
+# ==============================================================================
+# $FUNCTIONS
+# ==============================================================================
+snippet disp "display"
+$display(${1:"string"});
+endsnippet
+
+snippet ps "psprintf" w
+$psprintf("${1:%d}", $2)
+endsnippet
+
+
+# ==============================================================================
+# DIRECTIVES
+# ==============================================================================
+snippet include "include" b
+\`include "${1:file.sv}"
+endsnippet
+
+snippet define "define" b
+\`define ${1:MACRO_NAME} ${2:value}
 endsnippet
 
 snippet ifdef "ifdef" b
@@ -84,5 +120,13 @@ snippet cp "coverpoint" b
 cp_${1:coverpoint_name} : coverpoint ${2:variable} iff(${3:expression})
 {
 }
+endsnippet
+
+
+# ==============================================================================
+# ARM-STUFF
+# ==============================================================================
+snippet arminfo "" b
+\`arm_info("${1:tag}", ${2:$psprintf("", )});
 endsnippet
 
