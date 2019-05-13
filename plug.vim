@@ -80,7 +80,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " --- vim-buftabline ---
 " Replaces tabs with buffers
-Plug 'ap/vim-buftabline'
+"Plug 'ap/vim-buftabline'
 
 " --- Ctag Browser ---
 " :help tagbar
