@@ -1,4 +1,6 @@
 
+# vim: ft=snippets
+
 # REVISIT: This stuff doesn't appear to be working
 #extends systemverilog
 #extends verilog
@@ -52,6 +54,27 @@ endsnippet
 snippet el
 else begin
 	${0}
+end
+endsnippet
+
+snippet begin
+begin
+	$0
+end
+endsnippet
+
+# ==============================================================================
+# LOOPS
+# ==============================================================================
+snippet fori "for(int i = 0; i < count; i++)" b
+for(int i = 0; i < ${1:count}; i++) begin
+	$display("count=%0d", i);
+end
+endsnippet
+
+snippet foreach "foreach" b
+foreach(${1:array}[${2:i}]) begin
+	$display("$1[%0d]=0x%x", $2, $1[$2]);
 end
 endsnippet
 
@@ -124,9 +147,29 @@ endsnippet
 
 
 # ==============================================================================
+# COMMENTS
+# ==============================================================================
+snippet todo "TODO comment"
+// TODO: $1
+endsnippet
+
+snippet revisit "REVISIT comment"
+// REVISIT: $1
+endsnippet
+
+# ==============================================================================
 # ARM-STUFF
 # ==============================================================================
 snippet arminfo "" b
 \`arm_info("${1:tag}", ${2:$psprintf("", )});
 endsnippet
+
+snippet armdebug "" b
+\`arm_debug("${1:tag}", ${2:$psprintf("", )});
+endsnippet
+
+snippet armfail "description" b
+\`arm_fail_info($psprintf("Expected Waypoint Queue Empty (last valid wpt_type=%s (0x%x))",
+endsnippet
+
 
