@@ -175,6 +175,7 @@ Plug 'vim-scripts/ingo-library'
 
 " --- Miscenllaneous ---
 Plug 'guns/xterm-color-table.vim',  { 'on': 'XtermColorTable' }
+cnoreabbrev colortable XtermColorTable
 
 
 " ==============================================================================
