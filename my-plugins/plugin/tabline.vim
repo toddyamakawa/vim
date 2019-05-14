@@ -58,7 +58,9 @@ endf
 function MyTabLabel(n)
 	let l:buflist = tabpagebuflist(a:n)
 	let l:winnr   = tabpagewinnr(a:n)
-	let l:bufname  = bufname(l:buflist[l:winnr-1])
+	let l:bufnum  = '%#TabNumber#[' . a:n . ']'
+	let l:bufname = bufname(l:buflist[l:winnr-1])
+	let l:bufbase = fnamemodify(l:bufname, ':t:r')
 
 	" If selected tab
 	if a:n == tabpagenr()
@@ -69,7 +71,7 @@ function MyTabLabel(n)
 		let l:bufnum  = '%#TabNumber#[' . a:n . ']'
 	endif
 
-	return l:bufnum . l:tabline . l:bufname
+	return l:bufnum . l:tabline . l:bufbase
 endfunction
 
 set tabline=%!MyTabLine()
