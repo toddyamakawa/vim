@@ -36,12 +36,10 @@ function! MyTabLine()
 	" For each tab
 	for i in range(tabpagenr('$'))
 
-		" set the tab page number (for mouse clicks)
-		let str .= '%'.(i+1).'T'
 
 		" Label each window with MyTabLabel()
 		"let str .= ' %#Error#%{MyTabLabel(' . (i + 1) . ')} '
-		let str .= ' ' . MyTabLabel(i+1) . ' '
+		let str .= MyTabLabel(i+1) . ' '
 	endfor
 
 	" after the last tab fill with TabLineFill and reset tab page nr
@@ -62,7 +60,10 @@ function MyTabLabel(n)
 	let l:bufname = bufname(l:buflist[l:winnr-1])
 	let l:bufbase = fnamemodify(l:bufname, ':t:r')
 
-	" If selected tab
+	" Set tab page number (for mouse clicks)
+	let l:bufmouse = '%'.a:n.'T'
+
+	" Check if tab selected
 	if a:n == tabpagenr()
 		let l:tabline = '%#TabLineSel#'
 		let l:bufnum  = '%#TabNumberSel#[' . a:n . ']'
@@ -71,7 +72,7 @@ function MyTabLabel(n)
 		let l:bufnum  = '%#TabNumber#[' . a:n . ']'
 	endif
 
-	return l:bufnum . l:tabline . l:bufbase
+	return l:bufmouse . l:bufnum . l:tabline . l:bufbase
 endfunction
 
 set tabline=%!MyTabLine()
