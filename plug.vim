@@ -86,10 +86,6 @@ Plug 'unblevable/quick-scope'
 " :help NERDTree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-" --- vim-buftabline ---
-" Replaces tabs with buffers
-"Plug 'ap/vim-buftabline'
-
 " --- Ctag Browser ---
 " :help tagbar
 Plug 'majutsushi/tagbar'
@@ -177,6 +173,12 @@ Plug 'tpope/vim-repeat'
 " SYNTAX
 " ==============================================================================
 
+" --- Fish Syntax ---
+Plug 'dag/vim-fish'
+
+" --- .tmux.conf Syntax ---
+Plug 'keith/tmux.vim'
+
 " --- Verilog/SystemVerilog ---
 Plug 'vhda/verilog_systemverilog.vim'
 "Plug 'verilog_systemverilog.vim'
@@ -185,7 +187,7 @@ Plug 'vhda/verilog_systemverilog.vim'
 Plug 'vim-scripts/CountJump'
 Plug 'vim-scripts/ingo-library'
 
-" --- Miscenllaneous ---
+" --- Miscellaneous ---
 Plug 'guns/xterm-color-table.vim',  { 'on': 'XtermColorTable' }
 cnoreabbrev colortable XtermColorTable
 
@@ -193,14 +195,6 @@ cnoreabbrev colortable XtermColorTable
 " ==============================================================================
 " EXPERIMENTAL PLUGINS
 " ==============================================================================
-
-" Plugins to experiment with
-" :help airline
-"Plug 'vim-airline/vim-airline'
-" :help ctrlspace
-"Plug 'vim-ctrlspace/vim-ctrlspace'
-
-"Plug 'Lokaltog/vim-powerline'
 
 "Plug 'tpope/vim-dispatch'
 
