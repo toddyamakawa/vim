@@ -18,7 +18,6 @@ call plug#end()
 " --- Enable Plugins ---
 filetype indent plugin on
 
-
 " --- .vim Directory ---
 runtime ~/.vim
 
@@ -44,13 +43,13 @@ set nobackup                " No backup file (defaults to .filename~)
 set directory=~/.vim/.swp// " Swap file directory
 
 " --- View ---
-set viewoptions=cursor,folds,options
-set viewdir=~/.vim/.view//
-augroup automatic_view
-	autocmd!
-	autocmd BufWinLeave * silent! mkview
-	autocmd BufWinEnter * silent! loadview
-augroup END
+"set viewoptions=cursor,folds,options
+"set viewdir=~/.vim/.view//
+"augroup automatic_view
+	"autocmd!
+	"autocmd BufWinLeave * silent! mkview
+	"autocmd BufWinEnter * silent! loadview
+"augroup END
 
 " --- Path ---
 " Add subfolders to path
@@ -59,9 +58,16 @@ set path+=**
 " Tab complete all matching files
 set wildmenu
 
+" --- Splits ---
+set splitright
+set splitbelow
+
 " --- Undo ---
-"set undofile               " Enable undo file
-"set undodir=~/.vim/.undo// " Undo file directory
+if has('persistent_undo')
+	set undofile
+	set undodir=~/.vim/.undo
+endif
+
 
 
 " ==============================================================================
@@ -163,7 +169,6 @@ nnoremap du :diffupdate<Enter>
 " ==============================================================================
 " CLIPBOARD
 " ==============================================================================
-
 
 " --- Set Clipboard ---
 "set clipboard=xterm_clipboard

@@ -127,6 +127,10 @@ Plug 'tpope/vim-tbone'
 " Text object based on indentation level
 Plug 'michaeljsmith/vim-indent-object'
 
+" --- Undo Tree ---
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+noremap <silent><unique> <C-r> :UndotreeToggle<CR>
+
 " --- Search ---
 " Displays number of times pattern occurs
 "Plug 'google/vim-searchindex'
