@@ -29,15 +29,16 @@ cnoreabbrev rain RainbowLevelsToggle
 "Plug 'nathanaelkane/vim-indent-guides.git'
 "Plug 'tpope/vim-sleuth'
 
-" --- .tmux.conf Syntax ---
-Plug 'keith/tmux.vim'
-
 " --- fzf ---
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" --- Fish Syntax ---
-Plug 'dag/vim-fish'
+let g:fzf_action = {
+	\ 'ctrl-n': 'tab split',
+	\ 'ctrl-t': 'tab split',
+	\ 'ctrl-s': 'split',
+	\ 'ctrl-v': 'vsplit' }
+
 
 " --- ANSI Escape Syntax ---
 Plug 'vim-scripts/AnsiEsc.vim', { 'on': 'AnsiEsc' }
