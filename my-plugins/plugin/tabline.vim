@@ -31,26 +31,27 @@ exe 'highlight TabNumber   ' . s:tabnumber_fg    . s:tabnumber_bg
 exe 'highlight TabNumberSel' . s:tabnumbersel_fg . s:tabnumbersel_bg
 
 function! MyTabLine()
-	let str = ''
+	let l:tabline = ''
+
+	" Add Obsession indicator at the start
+	let l:tabline .= '%#TabNumber#%{ObsessionStatus()} '
 
 	" For each tab
 	for i in range(tabpagenr('$'))
 
-
 		" Label each window with MyTabLabel()
-		"let str .= ' %#Error#%{MyTabLabel(' . (i + 1) . ')} '
-		let str .= MyTabLabel(i+1) . ' '
+		let l:tabline .= MyTabLabel(i+1) . ' '
 	endfor
 
 	" after the last tab fill with TabLineFill and reset tab page nr
-	let str .= '%#TabLineFill#%T'
+	let l:tabline .= '%#TabLineFill#%T'
 
 	" right-align the label to close the current tab page
 	if tabpagenr('$') > 1
-		let str .= '%=%#TabLine#%999Xclose'
+		let l:tabline .= '%=%#TabLine#%999Xclose'
 	endif
 
-	return str
+	return l:tabline
 endf
 
 function MyTabLabel(n)

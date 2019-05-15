@@ -70,6 +70,12 @@ let g:UltiSnipsEditSplit          = 'tabdo'
 Plug 'honza/vim-snippets'
 
 
+" --- Obsession ---
+" :help obsess
+" :help obsession-status
+Plug 'tpope/vim-obsession'
+
+
 " --- Quick-Scope ---
 " Highlights characters that are good targets for F/f/T/t
 Plug 'unblevable/quick-scope'
