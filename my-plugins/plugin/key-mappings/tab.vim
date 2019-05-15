@@ -2,9 +2,20 @@
 " ==============================================================================
 " COMMANDS
 " ==============================================================================
+
+" Open new tabs
 cnoreabbrev tnew $tabnew %
-cnoreabbrev td tabclose
 cnoreabbrev tnewp exe "$tabnew " . system('xclip -o')
+cnoreabbrev thelp tab help
+
+" Close tab
+cnoreabbrev td tabclose
+
+" Move tabs
+cnoreabbrev tmove tabmove
+cnoreabbrev t0 tabmove 0
+cnoreabbrev t$ tabmove $
+
 
 
 " ==============================================================================
