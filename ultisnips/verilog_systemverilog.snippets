@@ -114,6 +114,15 @@ snippet ifndef "ifndef" b
 \`endif // \`ifndef $1
 endsnippet
 
+snippet " "" i
+"$1"
+endsnippet
+
+snippet ( "" i
+($1)
+endsnippet
+
+
 
 # ==============================================================================
 # RANDOMIZATION
@@ -161,15 +170,18 @@ endsnippet
 # ARM-STUFF
 # ==============================================================================
 snippet arminfo "" b
-\`arm_info("${1:tag}", ${2:$psprintf("", )});
+\`arm_info(${1:"info message"});
 endsnippet
 
 snippet armdebug "" b
-\`arm_debug("${1:tag}", ${2:$psprintf("", )});
+\`arm_debug(${1:"debug message"});
 endsnippet
 
 snippet armfail "description" b
-\`arm_fail_info($psprintf("Expected Waypoint Queue Empty (last valid wpt_type=%s (0x%x))",
+\`arm_fail_info(${1:"fail message"});
 endsnippet
 
+snippet armfatal "definition" b
+\`arm_tb_fatal(${1:"fatal message"});
+endsnippet
 
