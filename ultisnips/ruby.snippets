@@ -1,0 +1,35 @@
+
+# vim: ft=snippets
+
+snippet lsf "Submit self to LSF" b
+# Submit job to LSF
+unless ENV['LSB_BATCH_JID'] or ARGV.include? '-local'
+	argv = ARGV.map { |arg| arg =~ /\s/ ? "\'#{arg}\'" : arg }
+	argv << '-local'
+	\`bsub #{$0} #{argv.join(' ')}\`
+end
+endsnippet
+
+# ==============================================================================
+# Libraries
+# ==============================================================================
+snippet open3 "" b
+stdout, stderr, status = Open3.capture3(${1:cmd})
+endsnippet
+
+snippet popen3 "" b
+Open3.popen3(${1:'cat -n'}) do |stdin, stdout, stderr, wait_thr|
+	stdin.puts "something"
+end
+endsnippet
+
+# ==============================================================================
+# Array operations
+# ==============================================================================
+snippet keep "array.keep_if" w
+keep_if { |${1:element}| $1 }
+endsnippet
+snippet reject "array.reject" w
+reject { |${1:element}| $1 }
+endsnippet
+
