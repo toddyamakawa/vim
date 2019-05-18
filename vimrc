@@ -260,8 +260,6 @@ nnoremap d/ :g//d<Enter>
 nnoremap c/ :%s///g<Left><Left>
 
 " --- Abbreviations ---
-" Help
-cnoreabbrev help vert help
 
 " Set filetypes
 cnoreabbrev sfl setfiletype log
