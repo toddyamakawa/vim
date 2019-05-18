@@ -34,7 +34,9 @@ function! MyTabLine()
 	let l:tabline = ''
 
 	" Add Obsession indicator at the start
-	let l:tabline .= '%#TabNumber#%{ObsessionStatus()} '
+	if exists("g:loaded_obsession")
+		let l:tabline .= '%#TabNumber#%{ObsessionStatus()} '
+	endif
 
 	" For each tab
 	for i in range(tabpagenr('$'))
