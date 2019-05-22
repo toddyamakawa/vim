@@ -12,23 +12,13 @@ set showtabline=2
 " ==============================================================================
 " :help setting-tabline
 
-" --- Colors ---
-let s:tabline_fg      = ' ctermbg=0'
-let s:tabline_bg      = ' ctermbg=239'
-let s:tablinesel_fg   = ' ctermbg=0'
-let s:tablinesel_bg   = ' ctermbg=249'
-
-let s:tabnumber_fg    = ' ctermfg=39'
-let s:tabnumber_bg    = ' ctermbg=239'
-let s:tabnumbersel_fg = ' ctermfg=239'
-let s:tabnumbersel_bg = ' ctermbg=39'
-
 " --- Highlight Groups ---
-exe 'highlight TabLine   ' . s:tabline_fg    . s:tabline_bg
-exe 'highlight TabLineSel' . s:tablinesel_fg . s:tablinesel_bg
-
-exe 'highlight TabNumber   ' . s:tabnumber_fg    . s:tabnumber_bg
-exe 'highlight TabNumberSel' . s:tabnumbersel_fg . s:tabnumbersel_bg
+highlight TabLine       ctermbg=0   ctermbg=239
+highlight TabLineSel    ctermbg=0   ctermbg=249
+highlight TabNumber     ctermfg=39  ctermbg=239
+highlight TabNumberSel  ctermfg=239 ctermbg=39
+highlight TabNumberM    ctermfg=9   ctermbg=239
+highlight TabNumberSelM ctermfg=239 ctermbg=9
 
 function! MyTabLine()
 	let l:tabline = ''
@@ -59,23 +49,24 @@ endf
 function MyTabLabel(n)
 	let l:buflist = tabpagebuflist(a:n)
 	let l:winnr   = tabpagewinnr(a:n)
-	let l:bufnum  = '%#TabNumber#[' . a:n . ']'
-	let l:bufname = bufname(l:buflist[l:winnr-1])
+	let l:tabnum  = '%#TabNumber#[' . a:n . ']'
+	"let l:bufname = bufname(l:buflist[l:winnr-1])
+	let l:bufname = bufname(l:buflist[0])
 	let l:bufbase = fnamemodify(l:bufname, ':t:r')
 
 	" Set tab page number (for mouse clicks)
-	let l:bufmouse = '%'.a:n.'T'
+	let l:tabmouse = '%'.a:n.'T'
+
+	" REVISIT: Check if any buffer is modified, not just current
+	let l:mod = (getbufvar(buflist[l:winnr-1], "&mod") ? 'M' : '')
 
 	" Check if tab selected
-	if a:n == tabpagenr()
-		let l:tabline = '%#TabLineSel#'
-		let l:bufnum  = '%#TabNumberSel#[' . a:n . ']'
-	else
-		let l:tabline = '%#TabLine#'
-		let l:bufnum  = '%#TabNumber#[' . a:n . ']'
-	endif
+	let l:tabsel = (a:n == tabpagenr() ? 'Sel' : '')
 
-	return l:bufmouse . l:bufnum . l:tabline . l:bufbase
+	let l:tabline = '%#TabLine' . l:tabsel . '#'
+	let l:tabnum  = '%#TabNumber' .l:tabsel . l:mod .'#[' . a:n . ']'
+
+	return l:tabmouse . l:tabnum . l:tabline . l:bufbase
 endfunction
 
 set tabline=%!MyTabLine()
