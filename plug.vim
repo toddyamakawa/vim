@@ -94,8 +94,8 @@ Plug 'majutsushi/tagbar'
 " :help fugitive
 Plug 'tpope/vim-fugitive'
 
-" :help gitgutter
-Plug 'airblade/vim-gitgutter'
+" :help signify
+Plug 'mhinz/vim-signify'
 
 " --- Linter ---
 " Asynchronous Linting Engine (ALE)
