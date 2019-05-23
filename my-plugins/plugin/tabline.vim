@@ -13,8 +13,8 @@ set showtabline=2
 " :help setting-tabline
 
 " --- Highlight Groups ---
-highlight TabLine       ctermbg=0   ctermbg=239
-highlight TabLineSel    ctermbg=0   ctermbg=249
+highlight TabLine       ctermfg=249 ctermbg=239
+highlight TabLineSel    ctermfg=232 ctermbg=249
 highlight TabNumber     ctermfg=39  ctermbg=239
 highlight TabNumberSel  ctermfg=239 ctermbg=39
 highlight TabNumberM    ctermfg=9   ctermbg=239
