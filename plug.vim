@@ -34,6 +34,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 let g:fzf_action = {
+	\ 'ctrl-o': 'tab split',
 	\ 'ctrl-n': 'tab split',
 	\ 'ctrl-t': 'tab split',
 	\ 'ctrl-s': 'split',
