@@ -4,54 +4,43 @@ set laststatus=2
 
 
 " --- Highlight Groups ---
-highlight StatusLine              ctermfg=249 ctermbg=239
-highlight StatusLineActive        ctermfg=249 ctermbg=237
-highlight StatusLineRed           ctermfg=1   ctermbg=239
-highlight StatusLineRedActive     ctermfg=1   ctermbg=237
-highlight StatusLineGreen         ctermfg=2   ctermbg=239
-highlight StatusLineGreenActive   ctermfg=2   ctermbg=237
-highlight StatusLineYellow        ctermfg=3   ctermbg=239
-highlight StatusLineYellowActive  ctermfg=3   ctermbg=237
-highlight StatusLineBlue          ctermfg=4   ctermbg=239
-highlight StatusLineBlueActive    ctermfg=4   ctermbg=237
-highlight StatusLineMagenta       ctermfg=5   ctermbg=239
-highlight StatusLineMagentaActive ctermfg=5   ctermbg=237
-highlight StatusLineCyan          ctermfg=6   ctermbg=239
-highlight StatusLineCyanActive    ctermfg=6   ctermbg=237
+function! StatuslineSetBG(bg)
+	"let l:buflist = tabpagebuflist(a:n)
+	exec 'highlight StatusLine        ctermfg=249 ctermbg='.a:bg
+	exec 'highlight StatusLineRed     ctermfg=1   ctermbg='.a:bg
+	exec 'highlight StatusLineGreen   ctermfg=2   ctermbg='.a:bg
+	exec 'highlight StatusLineYellow  ctermfg=3   ctermbg='.a:bg
+	exec 'highlight StatusLineBlue    ctermfg=4   ctermbg='.a:bg
+	exec 'highlight StatusLineMagenta ctermfg=5   ctermbg='.a:bg
+	exec 'highlight StatusLineCyan    ctermfg=6   ctermbg='.a:bg
+endfunction
+
+" Default color
+call StatuslineSetBG(237)
+
+autocmd InsertEnter * call StatuslineSetBG(17)
+autocmd InsertLeave * call StatuslineSetBG(237)
+if v:version > 800
+	autocmd CmdlineEnter * call StatuslineSetBG(22)
+	autocmd CmdlineLeave * call StatuslineSetBG(237)
+endif
+" FIXME: Turns out highlights are global
+"autocmd WinEnter * call StatuslineSetBG(237)
+"autocmd WinLeave * call StatuslineSetBG(248)
 
 
 " --- User-Definend Colors ---
 
-" White on Black
-hi User1 ctermfg=7 ctermbg=0
-
-" Green on Black
-hi User2 ctermfg=2 ctermbg=0
-
-" Yellow on Black
-hi User3 ctermfg=3 ctermbg=0
-
-" Red on Black
-hi User4 ctermfg=1 ctermbg=0
-
-" Blue on Black
-hi User5 ctermfg=6 ctermbg=0
-
-" Purple on Black if ExpandTab
-" Blue on Black if NoExpandTab
-if &expandtab | hi User8 ctermfg=13 ctermbg=0 | else | hi User8 ctermfg=12 ctermbg=0 | endif
-autocmd OptionSet expandtab if &expandtab | hi User8 ctermfg=13 ctermbg=0 | else | hi User8 ctermfg=12 ctermbg=0 | endif
-
-
+" REVISIT: Implement in new function
 " White on Blue if Insert Mode
 " White on Black if not Insert Mode
-hi User9 ctermfg=7 ctermbg=0
-autocmd InsertEnter * hi User9 ctermfg=7 ctermbg=6
-autocmd InsertLeave * hi User9 ctermfg=7 ctermbg=0
-if v:version > 800
-	autocmd CmdlineEnter * hi User9 ctermfg=7 ctermbg=5
-	autocmd CmdlineLeave * hi User9 ctermfg=7 ctermbg=0
-endif
+"hi User9 ctermfg=7 ctermbg=0
+"autocmd InsertEnter * hi User9 ctermfg=7 ctermbg=6
+"autocmd InsertLeave * hi User9 ctermfg=7 ctermbg=0
+"if v:version > 800
+	"autocmd CmdlineEnter * hi User9 ctermfg=7 ctermbg=5
+	"autocmd CmdlineLeave * hi User9 ctermfg=7 ctermbg=0
+"endif
 
 
 " File Size
@@ -69,48 +58,48 @@ endfunction
 
 
 
+" ==============================================================================
+" GENERATE STATUSLINE
+" ==============================================================================
 function! MyStatusLine()
 	let l:statusline = ''
 
-	" ==============================================================================
+	" ==========================================================================
 	" LEFT STATUSLINE
-	" ==============================================================================
-
-	" TODO: Figure out how to determine if active
-	let l:active = 'Active'
+	" ==========================================================================
 
 	" Buffer number
 	let l:bufnum_color = 'Yellow'
-	let l:statusline .= '%#StatusLine'.l:bufnum_color.l:active.'#[%n]'
+	let l:statusline .= '%#StatusLine'.l:bufnum_color.'#[%n]'
 
 	" Modified?
-	let l:statusline .= '%#StatusLineRed'.l:active.'#%m'
+	let l:statusline .= '%#StatusLineRed#%m'
 
 	" relative/path/to/file
-	let l:statusline .= '%#StatusLine'.l:active.'#%f'
+	let l:statusline .= '%#StatusLine#%f'
 
-	" ==============================================================================
+	" ==========================================================================
 	" RIGHT STATUSLINE
-	" ==============================================================================
-	let l:statusline .= '%#StatusLine'.l:active.'#%='
+	" ==========================================================================
+	let l:statusline .= '%#StatusLine#%='
 
 	" CurrentLine
-	let l:statusline .= '%#StatusLineYellow'.l:active.'#%6l'
+	let l:statusline .= '%#StatusLineYellow#%6l'
 
 	" TotalLines
-	let l:statusline .= '%#StatusLine'.l:active.'#/%L,'
+	let l:statusline .= '%#StatusLine#/%L,'
 
 	" ColumnNumber
-	let l:statusline .= '%#StatusLineYellow'.l:active.'#%-3c'
+	let l:statusline .= '%#StatusLineYellow#%-3c'
 
 	" PercentFile
-	let l:statusline .= '%#StatusLine'.l:active.'#[%3p%%]'
+	let l:statusline .= '%#StatusLine#[%3p%%]'
 
 	" FileType
-	let l:statusline .= '%#StatusLineGreen'.l:active.'#%y'
+	let l:statusline .= '%#StatusLineGreen#%y'
 
 	" FileSize
-	let l:statusline .= '%#StatusLineCyan'.l:active.'#[%{StatuslineFileSize()}]'
+	let l:statusline .= '%#StatusLineCyan#[%{StatuslineFileSize()}]'
 
 	" IndentStatus
 	if &expandtab
@@ -118,7 +107,7 @@ function! MyStatusLine()
 	else
 		let l:expandtab_color = 'blue'
 	endif
-	let l:statusline .= '%#StatusLine'.l:expandtab_color.l:active.'#'
+	let l:statusline .= '%#StatusLine'.l:expandtab_color.'#'
 	let l:statusline .= '[%{&tabstop.&softtabstop.&shiftwidth}]'
 
 	return l:statusline
