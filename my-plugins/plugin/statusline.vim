@@ -3,6 +3,23 @@
 set laststatus=2
 
 
+" --- Highlight Groups ---
+highlight StatusLine              ctermfg=249 ctermbg=239
+highlight StatusLineActive        ctermfg=249 ctermbg=237
+highlight StatusLineRed           ctermfg=1   ctermbg=239
+highlight StatusLineRedActive     ctermfg=1   ctermbg=237
+highlight StatusLineGreen         ctermfg=2   ctermbg=239
+highlight StatusLineGreenActive   ctermfg=2   ctermbg=237
+highlight StatusLineYellow        ctermfg=3   ctermbg=239
+highlight StatusLineYellowActive  ctermfg=3   ctermbg=237
+highlight StatusLineBlue          ctermfg=4   ctermbg=239
+highlight StatusLineBlueActive    ctermfg=4   ctermbg=237
+highlight StatusLineMagenta       ctermfg=5   ctermbg=239
+highlight StatusLineMagentaActive ctermfg=5   ctermbg=237
+highlight StatusLineCyan          ctermfg=6   ctermbg=239
+highlight StatusLineCyanActive    ctermfg=6   ctermbg=237
+
+
 " --- User-Definend Colors ---
 
 " White on Black
@@ -59,38 +76,52 @@ function! MyStatusLine()
 	" LEFT STATUSLINE
 	" ==============================================================================
 
+	" TODO: Figure out how to determine if active
+	let l:active = 'Active'
+
 	" Buffer number
-	let l:statusline .= '%3*[%n]'
-	"return l:statusline
+	let l:bufnum_color = 'Yellow'
+	let l:statusline .= '%#StatusLine'.l:bufnum_color.l:active.'#[%n]'
 
 	" Modified?
-	let l:statusline .= '%4*%m'
+	let l:statusline .= '%#StatusLineRed'.l:active.'#%m'
 
 	" relative/path/to/file
-	let l:statusline .= '%9*%f'
+	let l:statusline .= '%#StatusLine'.l:active.'#%f'
 
 	" ==============================================================================
 	" RIGHT STATUSLINE
 	" ==============================================================================
-	let l:statusline .= '%1*%='
+	let l:statusline .= '%#StatusLine'.l:active.'#%='
 
-	" CurrentLine/TotalLines
-	let l:statusline .= '%3*%6l%1*/%L'
+	" CurrentLine
+	let l:statusline .= '%#StatusLineYellow'.l:active.'#%6l'
+
+	" TotalLines
+	let l:statusline .= '%#StatusLine'.l:active.'#/%L,'
 
 	" ColumnNumber
-	let l:statusline .= ',%3*%-3c'
+	let l:statusline .= '%#StatusLineYellow'.l:active.'#%-3c'
 
 	" PercentFile
-	let l:statusline .= '%1*[%3p%%]'
+	let l:statusline .= '%#StatusLine'.l:active.'#[%3p%%]'
 
 	" FileType
-	let l:statusline .= '%2*%y'
+	let l:statusline .= '%#StatusLineGreen'.l:active.'#%y'
+
+	" FileSize
+	let l:statusline .= '%#StatusLineCyan'.l:active.'#[%{StatuslineFileSize()}]'
 
 	" IndentStatus
-	let l:statusline .= '%8*[%{&tabstop.&softtabstop.&shiftwidth}]'
+	if &expandtab
+		let l:expandtab_color = 'cyan'
+	else
+		let l:expandtab_color = 'blue'
+	endif
+	let l:statusline .= '%#StatusLine'.l:expandtab_color.l:active.'#'
+	let l:statusline .= '[%{&tabstop.&softtabstop.&shiftwidth}]'
 
 	return l:statusline
-
 endfunction
 
 
