@@ -4,30 +4,18 @@ set laststatus=2
 
 
 " --- Highlight Groups ---
-function! StatuslineSetBG(bg)
-	"let l:buflist = tabpagebuflist(a:n)
-	exec 'highlight StatusLine        ctermfg=249 ctermbg='.a:bg
-	exec 'highlight StatusLineRed     ctermfg=1   ctermbg='.a:bg
-	exec 'highlight StatusLineGreen   ctermfg=2   ctermbg='.a:bg
-	exec 'highlight StatusLineYellow  ctermfg=3   ctermbg='.a:bg
-	exec 'highlight StatusLineBlue    ctermfg=4   ctermbg='.a:bg
-	exec 'highlight StatusLineMagenta ctermfg=5   ctermbg='.a:bg
-	exec 'highlight StatusLineCyan    ctermfg=6   ctermbg='.a:bg
+function! StatuslineSetBG(bufnr, bg)
+	exec 'highlight StatusLine'.a:bufnr.'        ctermfg=249 ctermbg='.a:bg
+	exec 'highlight StatusLine'.a:bufnr.'Red     ctermfg=1   ctermbg='.a:bg
+	exec 'highlight StatusLine'.a:bufnr.'Green   ctermfg=2   ctermbg='.a:bg
+	exec 'highlight StatusLine'.a:bufnr.'Yellow  ctermfg=3   ctermbg='.a:bg
+	exec 'highlight StatusLine'.a:bufnr.'Blue    ctermfg=4   ctermbg='.a:bg
+	exec 'highlight StatusLine'.a:bufnr.'Magenta ctermfg=5   ctermbg='.a:bg
+	exec 'highlight StatusLine'.a:bufnr.'Cyan    ctermfg=6   ctermbg='.a:bg
 endfunction
 
 " Default color
-call StatuslineSetBG(237)
-
-autocmd InsertEnter * call StatuslineSetBG(17)
-autocmd InsertLeave * call StatuslineSetBG(237)
-if v:version > 800
-	autocmd CmdlineEnter * call StatuslineSetBG(22)
-	autocmd CmdlineLeave * call StatuslineSetBG(237)
-endif
-" FIXME: Turns out highlights are global
-"autocmd WinEnter * call StatuslineSetBG(237)
-"autocmd WinLeave * call StatuslineSetBG(248)
-
+call StatuslineSetBG(bufnr('%'),237)
 
 " --- User-Definend Colors ---
 
@@ -61,8 +49,11 @@ endfunction
 " ==============================================================================
 " GENERATE STATUSLINE
 " ==============================================================================
-function! MyStatusLine()
+function! MyStatusLine(bufnr, bg, width)
 	let l:statusline = ''
+	let l:format = '%#StatusLine'.a:bufnr
+
+	call StatuslineSetBG(a:bufnr, a:bg)
 
 	" ==========================================================================
 	" LEFT STATUSLINE
@@ -70,36 +61,36 @@ function! MyStatusLine()
 
 	" Buffer number
 	let l:bufnum_color = 'Yellow'
-	let l:statusline .= '%#StatusLine'.l:bufnum_color.'#[%n]'
+	let l:statusline .= l:format.l:bufnum_color.'#[%n]'
 
 	" Modified?
-	let l:statusline .= '%#StatusLineRed#%m'
+	let l:statusline .= l:format.'Red#%m'
 
 	" relative/path/to/file
-	let l:statusline .= '%#StatusLine#%f'
+	let l:statusline .= l:format.'#%f'
 
 	" ==========================================================================
 	" RIGHT STATUSLINE
 	" ==========================================================================
-	let l:statusline .= '%#StatusLine#%='
+	let l:statusline .= l:format.'#%='
 
 	" CurrentLine
-	let l:statusline .= '%#StatusLineYellow#%6l'
+	let l:statusline .= l:format.'Yellow#%6l'
 
 	" TotalLines
-	let l:statusline .= '%#StatusLine#/%L,'
+	let l:statusline .= l:format.'#/%L,'
 
 	" ColumnNumber
-	let l:statusline .= '%#StatusLineYellow#%-3c'
+	let l:statusline .= l:format.'Yellow#%-3c'
 
 	" PercentFile
-	let l:statusline .= '%#StatusLine#[%3p%%]'
+	let l:statusline .= l:format.'#[%3p%%]'
 
 	" FileType
-	let l:statusline .= '%#StatusLineGreen#%y'
+	let l:statusline .= l:format.'Green#%y'
 
 	" FileSize
-	let l:statusline .= '%#StatusLineCyan#[%{StatuslineFileSize()}]'
+	let l:statusline .= l:format.'Cyan#[%{StatuslineFileSize()}]'
 
 	" IndentStatus
 	if &expandtab
@@ -107,12 +98,24 @@ function! MyStatusLine()
 	else
 		let l:expandtab_color = 'blue'
 	endif
-	let l:statusline .= '%#StatusLine'.l:expandtab_color.'#'
+	let l:statusline .= l:format.l:expandtab_color.'#'
 	let l:statusline .= '[%{&tabstop.&softtabstop.&shiftwidth}]'
 
 	return l:statusline
 endfunction
 
+set statusline=
+augroup MyStatusLine
+	" Set statusline, pass buffer number and window width
+	autocmd!
+	autocmd BufWinEnter,WinEnter * setlocal statusline=%!MyStatusLine(bufnr('%'),238,winwidth(win_id2win(win_getid())))
+	autocmd WinLeave             * setlocal statusline=%!MyStatusLine(bufnr('%'),235,winwidth(win_id2win(win_getid())))
+	autocmd InsertEnter          * setlocal statusline=%!MyStatusLine(bufnr('%'),17,winwidth(win_id2win(win_getid())))
+	autocmd InsertLeave          * setlocal statusline=%!MyStatusLine(bufnr('%'),238,winwidth(win_id2win(win_getid())))
+	if v:version > 800
+		autocmd CmdlineLeave * setlocal statusline=%!MyStatusLine(bufnr('%'),238,winwidth(win_id2win(win_getid())))
+		autocmd CmdlineEnter * setlocal statusline=%!MyStatusLine(bufnr('%'),235,winwidth(win_id2win(win_getid())))
+	endif
+augroup END
 
-set statusline=%!MyStatusLine()
 
