@@ -25,6 +25,7 @@ hi User5 ctermfg=6 ctermbg=0
 if &expandtab | hi User8 ctermfg=13 ctermbg=0 | else | hi User8 ctermfg=12 ctermbg=0 | endif
 autocmd OptionSet expandtab if &expandtab | hi User8 ctermfg=13 ctermbg=0 | else | hi User8 ctermfg=12 ctermbg=0 | endif
 
+
 " White on Blue if Insert Mode
 " White on Black if not Insert Mode
 hi User9 ctermfg=7 ctermbg=0
@@ -35,38 +36,6 @@ if v:version > 800
 	autocmd CmdlineLeave * hi User9 ctermfg=7 ctermbg=0
 endif
 
-
-" ==============================================================================
-" LEFT STATUSLINE
-" ==============================================================================
-set statusline=
-
-" Buffer number
-set statusline+=%3*[%n]
-
-" Modified?
-set statusline+=%4*%m
-
-" relative/path/to/file
-set statusline+=%9*%f
-
-
-" ==============================================================================
-" RIGHT STATUSLINE
-" ==============================================================================
-set statusline+=%1*%=
-
-" CurrentLine/TotalLines
-set statusline+=%3*%6l%1*/%L
-
-" ColumnNumber
-set statusline+=,%3*%-3c
-
-" PercentFile
-set statusline+=%1*[%3p%%]
-
-" FileType
-set statusline+=%2*%y
 
 " File Size
 function! StatuslineFileSize()
@@ -80,8 +49,50 @@ function! StatuslineFileSize()
 	endif
 	return l:bytes
 endfunction
-set statusline+=%5*[%{StatuslineFileSize()}]
 
-" IndentStatus
-set statusline+=%8*[%{&tabstop.&softtabstop.&shiftwidth}]
+
+
+function! MyStatusLine()
+	let l:statusline = ''
+
+	" ==============================================================================
+	" LEFT STATUSLINE
+	" ==============================================================================
+
+	" Buffer number
+	let l:statusline .= '%3*[%n]'
+	"return l:statusline
+
+	" Modified?
+	let l:statusline .= '%4*%m'
+
+	" relative/path/to/file
+	let l:statusline .= '%9*%f'
+
+	" ==============================================================================
+	" RIGHT STATUSLINE
+	" ==============================================================================
+	let l:statusline .= '%1*%='
+
+	" CurrentLine/TotalLines
+	let l:statusline .= '%3*%6l%1*/%L'
+
+	" ColumnNumber
+	let l:statusline .= ',%3*%-3c'
+
+	" PercentFile
+	let l:statusline .= '%1*[%3p%%]'
+
+	" FileType
+	let l:statusline .= '%2*%y'
+
+	" IndentStatus
+	let l:statusline .= '%8*[%{&tabstop.&softtabstop.&shiftwidth}]'
+
+	return l:statusline
+
+endfunction
+
+
+set statusline=%!MyStatusLine()
 
