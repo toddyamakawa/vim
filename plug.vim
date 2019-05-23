@@ -20,6 +20,7 @@ Plug 'yggdroot/indentline'
 
 " Reset IndentLines when tabstop changes
 autocmd OptionSet tabstop IndentLinesReset
+autocmd OptionSet tabstop set sts=0 sw=0
 
 " --- Rainbow Indentation ---
 "Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
@@ -95,13 +96,19 @@ Plug 'majutsushi/tagbar'
 " :help fugitive
 Plug 'tpope/vim-fugitive'
 
+" signify is faster than 'airblade/vim-gitgutter'
 " :help signify
 Plug 'mhinz/vim-signify'
+omap ic <plug>(signify-motion-inner-pending)
+xmap ic <plug>(signify-motion-inner-visual)
+omap ac <plug>(signify-motion-outer-pending)
+xmap ac <plug>(signify-motion-outer-visual)
+
 
 " --- Linter ---
 " Asynchronous Linting Engine (ALE)
 " :help ale
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 
 " Ruby linter
 Plug 'bbatsov/rubocop'
