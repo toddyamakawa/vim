@@ -13,6 +13,24 @@ endsnippet
 # ==============================================================================
 # Libraries
 # ==============================================================================
+snippet file "" w
+File.file?(${1:"/path/to/file"})
+endsnippet
+
+snippet dir "" w
+File.directory?(${1:"/path/to/dir"})
+endsnippet
+
+snippet glob "" w
+Dir.glob(${1:"/path/to/dir/*"})
+endsnippet
+
+snippet mktemp "" b
+require 'tmpdir'
+${1:tmpdir} = Dir.mktmpdir()
+at_exit { FileUtils.remove_entry($1) }
+endsnippet
+
 snippet open3 "" b
 stdout, stderr, status = Open3.capture3(${1:cmd})
 endsnippet
@@ -23,9 +41,15 @@ Open3.popen3(${1:'cat -n'}) do |stdin, stdout, stderr, wait_thr|
 end
 endsnippet
 
+
 # ==============================================================================
 # Array operations
 # ==============================================================================
+snippet each "" w
+each do |${1:element}|
+	$0
+end
+endsnippet
 snippet keep "array.keep_if" w
 keep_if { |${1:element}| $1 }
 endsnippet
