@@ -24,10 +24,6 @@ runtime ~/.vim
 " GENERAL SETTINGS
 " ==============================================================================
 
-" --- History ---
-" Save 1000 command lines of history
-set history=1000
-
 " --- Command Line ---
 " Use <Enter> for commmand mode
 nnoremap <Enter> :
@@ -35,19 +31,6 @@ vnoremap <Enter> :
 
 autocmd CmdwinEnter * nnoremap <buffer> <Enter> <Enter>
 autocmd CmdwinEnter * nnoremap <buffer> q :q<Enter>
-
-" --- Backup ---
-set nobackup                " No backup file (defaults to .filename~)
-set directory=~/.vim/.swp// " Swap file directory
-
-" --- View ---
-"set viewoptions=cursor,folds,options
-"set viewdir=~/.vim/.view//
-"augroup automatic_view
-	"autocmd!
-	"autocmd BufWinLeave * silent! mkview
-	"autocmd BufWinEnter * silent! loadview
-"augroup END
 
 " --- Path ---
 " Add subfolders to path
@@ -59,13 +42,6 @@ set wildmenu
 " --- Splits ---
 set splitright
 set splitbelow
-
-" --- Undo ---
-if has('persistent_undo')
-	set undofile
-	set undodir=~/.vim/.undo
-endif
-
 
 
 " ==============================================================================
