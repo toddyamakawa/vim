@@ -3,14 +3,12 @@
 " VIM-PLUG
 " ==============================================================================
 
-" --- Install ---
-" :PlugInstall
-
 " --- Setup ---
 set nocompatible
 filetype off
 
 " --- Vim Plugins ---
+" :PlugInstall
 call plug#begin('~/.vim/vim-plug')
 	source ~/.vim/plug.vim
 call plug#end()
@@ -166,46 +164,13 @@ nnoremap <C-h> <C-o>
 "nnoremap <C-k> <C-]>
 
 
-" ==============================================================================
-" MOVEMENT
-" ==============================================================================
-
-" Start of line
-noremap H ^
-
-" End of line
-noremap L $
-
-" Move one line for wrapped text
-noremap j gj
-noremap k gk
-
-" Mark with M
-noremap M m
-" Jump to mark with m
-noremap m '
-
-" Repeat latest f, t, F or T in opposite direction
-" Opposite direction of ;
-noremap : ,
-
 " Disable lookup
 noremap K <nop>
 
-" Stop using arrow keys
-"map <Up> <nop>
-"map <Down> <nop>
-"map <Left> <nop>
-"map <Right> <nop>
-"imap <Up> <nop>
-"imap <Down> <nop>
-"imap <Left> <nop>
-"imap <Right> <nop>
 
 " Completion with C-j and C-k
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
-
 
 " --- Exit Insert Mode ---
 inoremap jj <Esc>
