@@ -4,18 +4,18 @@ set laststatus=2
 
 
 " --- Highlight Groups ---
-function! StatuslineSetBG(bufnr, bg)
-	exec 'highlight StatusLine'.a:bufnr.'        ctermfg=249 ctermbg='.a:bg
-	exec 'highlight StatusLine'.a:bufnr.'Red     ctermfg=1   ctermbg='.a:bg
-	exec 'highlight StatusLine'.a:bufnr.'Green   ctermfg=2   ctermbg='.a:bg
-	exec 'highlight StatusLine'.a:bufnr.'Yellow  ctermfg=3   ctermbg='.a:bg
-	exec 'highlight StatusLine'.a:bufnr.'Blue    ctermfg=4   ctermbg='.a:bg
-	exec 'highlight StatusLine'.a:bufnr.'Magenta ctermfg=5   ctermbg='.a:bg
-	exec 'highlight StatusLine'.a:bufnr.'Cyan    ctermfg=6   ctermbg='.a:bg
+function! StatuslineSetBG(bg)
+	exec 'highlight StatusLine        ctermfg=249 ctermbg='.a:bg
+	exec 'highlight StatusLineRed     ctermfg=1   ctermbg='.a:bg
+	exec 'highlight StatusLineGreen   ctermfg=2   ctermbg='.a:bg
+	exec 'highlight StatusLineYellow  ctermfg=3   ctermbg='.a:bg
+	exec 'highlight StatusLineBlue    ctermfg=4   ctermbg='.a:bg
+	exec 'highlight StatusLineMagenta ctermfg=5   ctermbg='.a:bg
+	exec 'highlight StatusLineCyan    ctermfg=6   ctermbg='.a:bg
 endfunction
 
 " Default color
-call StatuslineSetBG(bufnr('%'),237)
+call StatuslineSetBG(237)
 
 " --- User-Definend Colors ---
 
@@ -45,26 +45,42 @@ function! StatuslineFileSize()
 endfunction
 
 
+" File Info
+" filetype, fileencoding, and fileformat
+function! StatuslineFileInfo(width)
+	let l:filetype = (&filetype=='') ? '%#StatusLineRed#[none' : '%#StatusLineGreen#[%{&filetype}'
+	let l:fileinfo = (a:width<80) ? '' : '.%{&fileencoding?&fileencoding:&encoding}.%{&fileformat}'
+	return l:filetype.l:fileinfo.']'
+	"return '80'
+endfunction
+
+
 
 " ==============================================================================
 " GENERATE STATUSLINE
 " ==============================================================================
 function! MyStatusLine(bufnr, bg, width)
 	let l:statusline = ''
-	let l:format = '%#StatusLine'.a:bufnr
 
-	call StatuslineSetBG(a:bufnr, a:bg)
+	let l:format  = '%#StatusLine'
+	let l:default = '%#StatusLine#'
+	let l:red     = '%#StatusLineRed#'
+	let l:green   = '%#StatusLineGreen#'
+	let l:yellow  = '%#StatusLineYellow#'
+	let l:blue    = '%#StatusLineBlue#'
+	let l:magenta = '%#StatusLineMagenta#'
+	let l:cyan    = '%#StatusLineCyan#'
+
+	call StatuslineSetBG(a:bg)
+
 
 	" ==========================================================================
 	" LEFT STATUSLINE
 	" ==========================================================================
 
-	" Buffer number
-	let l:bufnum_color = 'Yellow'
-	let l:statusline .= l:format.l:bufnum_color.'#[%n]'
-
-	" Modified?
-	let l:statusline .= l:format.'Red#%m'
+	let l:statusline .= &modified ? l:red : l:yellow " Red if modified
+	"let l:statusline .= '%{&modified?'.l:red.':'.l:yellow.'}'
+	let l:statusline .= &readonly ? '[-]' : '[%n]'
 
 	" relative/path/to/file
 	let l:statusline .= l:format.'#%f'
@@ -86,8 +102,19 @@ function! MyStatusLine(bufnr, bg, width)
 	" PercentFile
 	let l:statusline .= l:format.'#[%3p%%]'
 
-	" FileType
-	let l:statusline .= l:format.'Green#%y'
+	" filetype, fileencoding, and fileformat
+	let l:fileinfo = (a:width<80) ? '' : '.%{&fileencoding?&fileencoding:&encoding}.%{&fileformat}'
+
+	" FIXME: Uses current flags, not local
+	"let l:filetype = (&filetype=='') ? l:red.'[none' : l:green.'[%{&filetype}'
+	"let l:statusline .= l:filetype.l:fileinfo.']'
+
+	" Use this for now
+	let l:filetype = "%{&filetype==''?'none':&filetype}"
+	let l:statusline .= l:green.'['.l:filetype.l:fileinfo.']'
+
+	" REVISIT: FIgure out how to make this work
+	"let l:statusline .= '%{StatuslineFileInfo('.a:width.')}'
 
 	" FileSize
 	let l:statusline .= l:format.'Cyan#[%{StatuslineFileSize()}]'
@@ -100,6 +127,9 @@ function! MyStatusLine(bufnr, bg, width)
 	endif
 	let l:statusline .= l:format.l:expandtab_color.'#'
 	let l:statusline .= '[%{&tabstop.&softtabstop.&shiftwidth}]'
+
+	" Width to narrow indicator
+	let l:statusline .= (a:width<80) ? l:format.'Red#-' : ''
 
 	return l:statusline
 endfunction
