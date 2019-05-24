@@ -87,32 +87,11 @@ silent! colorscheme jellybeans " Favorite colorscheme
 "let &t_SR = "\<Esc>[4 q"
 "let &t_EI = "\<Esc>[2 q"
 
-set nrformats-=octal " Numbers starting in 0 will not be treated as octal
-
-" Show spaces for indentation
-let g:indentLine_char = '|'
-
 " Change background color beyond column 80
 let &colorcolumn=join(range(81,999),",")
 highlight clear ColorColumn
 au InsertEnter * highlight ColorColumn guibg=#000000 ctermbg=16
 au InsertLeave * highlight clear ColorColumn
-
-" --- Indentation Settings ---
-set noexpandtab     " Use tabs instead of spaces
-"set expandtab      " Use spaces instead of tabs
-set tabstop=4       " Display tabs as 4 columns
-set autoindent      " Use auto-indenting
-set nocindent       " Don't use C style indenting
-
-" --- Wrap Settings ---
-set nowrap       " Disable wrap
-set textwidth=0  " Disable maximum inserted text width
-set wrapmargin=0 " Wrap margin
-
-set scrolloff=4   " Lines above and below cursor
-set sidescroll=1  " Horizontal number of columns to scroll
-
 
 " ==============================================================================
 " GENERAL SHORTCUTS
@@ -120,9 +99,6 @@ set sidescroll=1  " Horizontal number of columns to scroll
 
 " Automatically reload file
 "set autoread
-
-" Backspace anything
-set backspace=start,indent,eol
 
 " TODO: Figure out how to unmap Shift-Backspace
 "inoremap <S-BS> <nop>
