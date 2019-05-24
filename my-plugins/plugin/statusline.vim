@@ -55,14 +55,12 @@ function! StatuslineFileInfo(width)
 endfunction
 
 
-
 " ==============================================================================
 " GENERATE STATUSLINE
 " ==============================================================================
 function! MyStatusLine(bufnr, bg, width)
 	let l:statusline = ''
 
-	let l:format  = '%#StatusLine'
 	let l:default = '%#StatusLine#'
 	let l:red     = '%#StatusLineRed#'
 	let l:green   = '%#StatusLineGreen#'
@@ -78,29 +76,29 @@ function! MyStatusLine(bufnr, bg, width)
 	" LEFT STATUSLINE
 	" ==========================================================================
 
-	let l:statusline .= &modified ? l:red : l:yellow " Red if modified
-	"let l:statusline .= '%{&modified?'.l:red.':'.l:yellow.'}'
-	let l:statusline .= &readonly ? '[-]' : '[%n]'
+	"let l:statusline .= &modified ? l:red : l:yellow " Red if modified
+	"let l:statusline .= '[%{&readonly?"-":"%n"}]'
+	let l:statusline .= l:yellow.'[%n]'.l:red.'%m'
 
 	" relative/path/to/file
-	let l:statusline .= l:format.'#%f'
+	let l:statusline .= l:default.'%f'
 
 	" ==========================================================================
 	" RIGHT STATUSLINE
 	" ==========================================================================
-	let l:statusline .= l:format.'#%='
+	let l:statusline .= l:default.'%='
 
 	" CurrentLine
-	let l:statusline .= l:format.'Yellow#%6l'
+	let l:statusline .= l:yellow.'%6l'
 
 	" TotalLines
-	let l:statusline .= l:format.'#/%L,'
+	let l:statusline .= l:default.'/%L,'
 
 	" ColumnNumber
-	let l:statusline .= l:format.'Yellow#%-3c'
+	let l:statusline .= l:yellow.'%-3c'
 
 	" PercentFile
-	let l:statusline .= l:format.'#[%3p%%]'
+	let l:statusline .= l:default.'[%3p%%]'
 
 	" filetype, fileencoding, and fileformat
 	let l:fileinfo = (a:width<80) ? '' : '.%{&fileencoding?&fileencoding:&encoding}.%{&fileformat}'
@@ -117,19 +115,13 @@ function! MyStatusLine(bufnr, bg, width)
 	"let l:statusline .= '%{StatuslineFileInfo('.a:width.')}'
 
 	" FileSize
-	let l:statusline .= l:format.'Cyan#[%{StatuslineFileSize()}]'
+	let l:statusline .= l:cyan.'[%{StatuslineFileSize()}]'
 
 	" IndentStatus
-	if &expandtab
-		let l:expandtab_color = 'cyan'
-	else
-		let l:expandtab_color = 'blue'
-	endif
-	let l:statusline .= l:format.l:expandtab_color.'#'
-	let l:statusline .= '[%{&tabstop.&softtabstop.&shiftwidth}]'
+	let l:statusline .= '[%{&expandtab?"s":"t"}%{&tabstop.&softtabstop.&shiftwidth}]'
 
 	" Width to narrow indicator
-	let l:statusline .= (a:width<80) ? l:format.'Red#-' : ''
+	let l:statusline .= (a:width<80) ? l:red.'-' : ''
 
 	return l:statusline
 endfunction
@@ -147,5 +139,4 @@ augroup MyStatusLine
 		autocmd CmdlineEnter * setlocal statusline=%!MyStatusLine(bufnr('%'),235,winwidth(win_id2win(win_getid())))
 	endif
 augroup END
-
 
