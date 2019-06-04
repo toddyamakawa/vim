@@ -22,6 +22,9 @@ Plug 'yggdroot/indentline'
 autocmd OptionSet tabstop IndentLinesReset
 autocmd OptionSet tabstop set sts=0 sw=0
 
+" Show spaces for indentation
+let g:indentLine_char = '|'
+
 " --- Rainbow Indentation ---
 "Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'thiagoalessio/rainbow_levels.vim'
@@ -39,7 +42,8 @@ let g:fzf_action = {
 	\ 'ctrl-n': 'tab split',
 	\ 'ctrl-t': 'tab split',
 	\ 'ctrl-s': 'split',
-	\ 'ctrl-v': 'vsplit' }
+	\ 'ctrl-v': 'vsplit'
+\ }
 
 
 " --- ANSI Escape Syntax ---
@@ -103,6 +107,10 @@ omap ic <plug>(signify-motion-inner-pending)
 xmap ic <plug>(signify-motion-inner-visual)
 omap ac <plug>(signify-motion-outer-pending)
 xmap ac <plug>(signify-motion-outer-visual)
+
+let g:signify_vcs_cmds = {
+	\ 'git': 'git diff --no-color --no-ext-diff -U0 --ignore-all-space --ignore-blank-lines -- %f'
+\ }
 
 
 " --- Linter ---
