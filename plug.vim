@@ -1,4 +1,6 @@
 
+" https://vim.fandom.com/wiki/Unused_keys
+
 " ==============================================================================
 " MOVEMENT
 " ==============================================================================
@@ -8,7 +10,6 @@
 " Maps {count} [v and v| to jump up/down as many lines as possible
 " Preserves cursor column
 Plug 'vim-utils/vim-vertical-move'
-
 
 " --- vim-JumpToVerticalOccurrence ---
 " :help JumpToVerticalOccurrence-usage
@@ -20,12 +21,29 @@ Plug 'inkarkat/vim-JumpToVerticalOccurrence'
 let g:JumpToVerticalOccurrence_CharUnderCursorMapping = ''
 let g:JumpToVerticalOccurrence_QueriedMapping = ''
 
-
 " --- vim-indentwise ---
 " :help indentwise
 " Maps {count} [- [+ [= ]= ]+ ]- to jump to lesser/greater/equal indentation
 " {count}[_  {count}]_ jump to previous/next line with indent-level of {count}.
 Plug 'jeetsukumaran/vim-indentwise'
+
+" --- vim-easymotion ---
+" :help easymotion
+Plug 'easymotion/vim-easymotion'
+
+"let g:EasyMotion_keys='1234567890hklyuiopnm,qwertzxcvbasdgjf;'
+
+nmap <silent><unique> ;t <Plug>(easymotion-t)
+nmap <silent><unique> ;T <Plug>(easymotion-T)
+nmap <silent><unique> ;f <Plug>(easymotion-f)
+nmap <silent><unique> ;F <Plug>(easymotion-F)
+nmap <silent><unique> ;n <Plug>(easymotion-n)
+nmap <silent><unique> ;N <Plug>(easymotion-N)
+
+"let g:EasyMotion_startofline = 0
+map <silent><unique> ;j <Plug>(easymotion-j)
+map <silent><unique> ;k <Plug>(easymotion-k)
+
 
 
 " ==============================================================================
@@ -114,7 +132,8 @@ Plug 'tpope/vim-obsession'
 
 " --- Quick-Scope ---
 " Highlights characters that are good targets for F/f/T/t
-Plug 'unblevable/quick-scope'
+" No longer needed with vim-easymotion
+"Plug 'unblevable/quick-scope'
 
 " --- NERDTree ---
 " Filesystem explorer
