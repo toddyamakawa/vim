@@ -40,9 +40,11 @@ nmap <silent><unique> ;F <Plug>(easymotion-F)
 nmap <silent><unique> ;n <Plug>(easymotion-n)
 nmap <silent><unique> ;N <Plug>(easymotion-N)
 
-"let g:EasyMotion_startofline = 0
-map <silent><unique> ;j <Plug>(easymotion-j)
-map <silent><unique> ;k <Plug>(easymotion-k)
+let g:EasyMotion_startofline = 0
+nmap <silent><unique> ;j <Plug>(easymotion-sol-j)
+nmap <silent><unique> ;k <Plug>(easymotion-sol-k)
+vmap <silent><unique> ;j <Plug>(easymotion-j)
+vmap <silent><unique> ;k <Plug>(easymotion-k)
 
 
 
