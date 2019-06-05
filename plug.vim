@@ -1,5 +1,34 @@
 
 " ==============================================================================
+" MOVEMENT
+" ==============================================================================
+
+" --- vim-vertical-move ---
+" :help vertical-move
+" Maps {count} [v and v| to jump up/down as many lines as possible
+" Preserves cursor column
+Plug 'vim-utils/vim-vertical-move'
+
+
+" --- vim-JumpToVerticalOccurrence ---
+" :help JumpToVerticalOccurrence-usage
+" Maps {count} [| and ]| to jump to previous/next non-whitespace line
+" Preserves cursor column
+Plug 'inkarkat/vim-JumpToVerticalOccurrence'
+
+" Unmap conflicts with vim-vertical-move plugin
+let g:JumpToVerticalOccurrence_CharUnderCursorMapping = ''
+let g:JumpToVerticalOccurrence_QueriedMapping = ''
+
+
+" --- vim-indentwise ---
+" :help indentwise
+" Maps {count} [- [+ [= ]= ]+ ]- to jump to lesser/greater/equal indentation
+" {count}[_  {count}]_ jump to previous/next line with indent-level of {count}.
+Plug 'jeetsukumaran/vim-indentwise'
+
+
+" ==============================================================================
 " INTERFACE
 " ==============================================================================
 
@@ -168,9 +197,6 @@ xunmap <Plug>(slash-after)
 Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-" --- vim-JumpToVerticalOccurrence ---
-Plug 'inkarkat/vim-JumpToVerticalOccurrence'
 
 " --- vim-surround ---
 " :help surround
