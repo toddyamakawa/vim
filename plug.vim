@@ -132,6 +132,17 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-obsession'
 
 
+" --- Vim Wiki ---
+" :help vimwiki
+" :help vimwiki-commands
+" :help vimwiki-mappings
+Plug 'vimwiki/vimwiki'
+
+" REVISIT: Figure out how to not get my mapping overwritten
+" Default: nmap <silent><buffer> <CR> <Plug>VimwikiFollowLink
+"nmap <silent><buffer> <Space><CR> <Plug>VimwikiFollowLink
+
+
 " --- Quick-Scope ---
 " Highlights characters that are good targets for F/f/T/t
 " No longer needed with vim-easymotion
