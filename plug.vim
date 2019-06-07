@@ -143,10 +143,15 @@ Plug 'vimwiki/vimwiki'
 "nmap <silent><buffer> <Space><CR> <Plug>VimwikiFollowLink
 
 
+" --- vimagit ---
+" Inspired from emacs' magit
+Plug 'jreybert/vimagit'
+
+
 " --- Quick-Scope ---
 " Highlights characters that are good targets for F/f/T/t
 " No longer needed with vim-easymotion
-"Plug 'unblevable/quick-scope'
+Plug 'unblevable/quick-scope'
 
 " --- NERDTree ---
 " Filesystem explorer
