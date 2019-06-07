@@ -1,6 +1,17 @@
 
+snippet #!
+#!/usr/bin/env bash
+endsnippet
+
 snippet do
 do
 	$1
 done
 endsnippet
+
+snippet while
+while [[ ${1:condition} ]]; do
+	$2
+done
+endsnippet
+
