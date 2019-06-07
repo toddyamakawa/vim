@@ -39,6 +39,7 @@ nmap <silent><unique> ;f <Plug>(easymotion-f)
 nmap <silent><unique> ;F <Plug>(easymotion-F)
 nmap <silent><unique> ;n <Plug>(easymotion-n)
 nmap <silent><unique> ;N <Plug>(easymotion-N)
+nmap <silent><unique> ;s <Plug>(easymotion-s)
 
 let g:EasyMotion_startofline = 0
 nmap <silent><unique> ;j <Plug>(easymotion-sol-j)
