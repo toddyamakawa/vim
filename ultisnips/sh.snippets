@@ -15,3 +15,28 @@ while [[ ${1:condition} ]]; do
 done
 endsnippet
 
+snippet $ "[$0] filename"
+\$0
+endsnippet
+snippet $ "[$$] PID of current shell"
+\$$
+endsnippet
+snippet $ "[$#] number of arguments"
+\$#
+endsnippet
+snippet $ "[$@] all arguments individually double quoted"
+\$@
+endsnippet
+snippet $ "[$*] all arguments double quoted"
+\$*
+endsnippet
+snippet $ "[$?] exit status of last command"
+\$?
+endsnippet
+snippet $ "[$!] PID of last background command"
+\$!
+endsnippet
+snippet $ "[$_] last argument of previous command"
+\$_
+endsnippet
+
