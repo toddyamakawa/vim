@@ -40,6 +40,7 @@ nmap <silent><unique> ;F <Plug>(easymotion-F)
 nmap <silent><unique> ;n <Plug>(easymotion-n)
 nmap <silent><unique> ;N <Plug>(easymotion-N)
 nmap <silent><unique> ;s <Plug>(easymotion-s)
+"nnoremap <silent><unique> ;; ;
 
 let g:EasyMotion_startofline = 0
 nmap <silent><unique> ;j <Plug>(easymotion-sol-j)
@@ -59,6 +60,10 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'tomasr/molokai'
 Plug 'antlypls/vim-colors-codeschool'
 Plug 'patstockwell/vim-monokai-tasty'
+
+" --- Limelight ---
+" TODO: Figure out how to get this working with my current colorscheme
+"Plug 'junegunn/limelight.vim'
 
 " --- Clipboard ---
 " TODO: Figure out this plugin
@@ -137,17 +142,24 @@ Plug 'tpope/vim-obsession'
 " :help vimwiki
 " :help vimwiki-commands
 " :help vimwiki-mappings
+
 Plug 'vimwiki/vimwiki'
 
-" REVISIT: Figure out how to not get my mapping overwritten
+" REVISIT: Figure out where/how to remap this (works in .vimrc but not here)
 " Default: nmap <silent><buffer> <CR> <Plug>VimwikiFollowLink
-"nmap <silent><buffer> <Space><CR> <Plug>VimwikiFollowLink
+nmap <silent> <Space><CR> <Plug>VimwikiFollowLink
+
+" Use markdown
+"let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 
 
 " --- vimagit ---
 " Inspired from emacs' magit
 Plug 'jreybert/vimagit'
 
+" --- vim-illuminate ---
+Plug 'RRethy/vim-illuminate'
+highlight link illuminatedWord Cursor
 
 " --- Quick-Scope ---
 " Highlights characters that are good targets for F/f/T/t
@@ -199,8 +211,9 @@ Plug 'tmhedberg/matchit'
 " --- Comments ---
 Plug 'scrooloose/nerdcommenter'
 
-" --- tmux support ---
-Plug 'tpope/vim-tbone'
+" --- vim-tmux-focus-events ---
+" TODO: Use this
+"Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " --- Text Objects ---
 " Text object based on indentation level

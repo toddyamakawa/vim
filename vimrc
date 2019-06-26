@@ -179,8 +179,7 @@ nnoremap c/ :%s///g<Left><Left>
 " --- Abbreviations ---
 
 " Set filetypes
-cnoreabbrev sfl setfiletype log
+cnoreabbrev sfl set ft=log syntax=log
 cnoreabbrev sfv setfiletype verilog_systemverilog
-
 
 
