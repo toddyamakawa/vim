@@ -111,7 +111,7 @@ function! MyStatusLine(bufnr, bg, width)
 	let l:filetype = "%{&filetype==''?'none':&filetype}"
 	let l:statusline .= l:green.'['.l:filetype.l:fileinfo.']'
 
-	" REVISIT: FIgure out how to make this work
+	" REVISIT: Figure out how to make this work
 	"let l:statusline .= '%{StatuslineFileInfo('.a:width.')}'
 
 	" FileSize
