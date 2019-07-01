@@ -7,7 +7,7 @@
 
 " --- vim-vertical-move ---
 " :help vertical-move
-" Maps {count} [v and v| to jump up/down as many lines as possible
+" Maps {count} [v/]v to jump up/down as many lines as possible
 " Preserves cursor column
 Plug 'vim-utils/vim-vertical-move'
 
@@ -29,6 +29,7 @@ Plug 'jeetsukumaran/vim-indentwise'
 
 " --- vim-easymotion ---
 " :help easymotion
+" Replaces 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
 
 "let g:EasyMotion_keys='1234567890hklyuiopnm,qwertzxcvbasdgjf;'
@@ -47,7 +48,6 @@ nmap <silent><unique> ;j <Plug>(easymotion-sol-j)
 nmap <silent><unique> ;k <Plug>(easymotion-sol-k)
 vmap <silent><unique> ;j <Plug>(easymotion-j)
 vmap <silent><unique> ;k <Plug>(easymotion-k)
-
 
 
 " ==============================================================================
@@ -99,11 +99,6 @@ let g:fzf_action = {
 	\ 'ctrl-s': 'split',
 	\ 'ctrl-v': 'vsplit'
 \ }
-
-
-" --- ANSI Escape Syntax ---
-Plug 'vim-scripts/AnsiEsc.vim', { 'on': 'AnsiEsc' }
-cnoreabbrev ansi AnsiEsc
 
 
 " ==============================================================================
@@ -160,6 +155,9 @@ Plug 'jreybert/vimagit'
 " --- vim-illuminate ---
 Plug 'RRethy/vim-illuminate'
 highlight link illuminatedWord Cursor
+let g:Illuminate_ftHighlightGroups = {
+	\ 'vim:blacklist': ['Statement']
+\ }
 
 " --- Quick-Scope ---
 " Highlights characters that are good targets for F/f/T/t
@@ -235,10 +233,6 @@ Plug 'junegunn/vim-slash'
 noremap <silent> <Plug>(slash-after) :<C-u>ShowSearchIndex<CR>
 xunmap <Plug>(slash-after)
 
-" Search for two characters
-"Plug 'justinmk/vim-sneak'
-"map s <Plug>sneak_s
-
 
 " ==============================================================================
 " COMMANDS
@@ -265,20 +259,17 @@ Plug 'tpope/vim-repeat'
 " ==============================================================================
 " SYNTAX
 " ==============================================================================
-
-" --- Fish Syntax ---
-Plug 'dag/vim-fish'
-
-" --- .tmux.conf Syntax ---
-Plug 'keith/tmux.vim'
-
-" --- Verilog/SystemVerilog ---
-Plug 'vhda/verilog_systemverilog.vim'
-"Plug 'verilog_systemverilog.vim'
+Plug 'dag/vim-fish'                   " fish
+Plug 'keith/tmux.vim'                 " tmux
+Plug 'vhda/verilog_systemverilog.vim' " verilog/systemverilog
 
 " --- vim-scripts ---
 Plug 'vim-scripts/CountJump'
 Plug 'vim-scripts/ingo-library'
+
+" --- ANSI Escape Syntax ---
+Plug 'vim-scripts/AnsiEsc.vim', { 'on': 'AnsiEsc' }
+cnoreabbrev ansi AnsiEsc
 
 " --- Miscellaneous ---
 Plug 'guns/xterm-color-table.vim',  { 'on': 'XtermColorTable' }
@@ -288,7 +279,6 @@ cnoreabbrev colortable XtermColorTable
 " ==============================================================================
 " EXPERIMENTAL PLUGINS
 " ==============================================================================
-
 "Plug 'tpope/vim-dispatch'
 
 
