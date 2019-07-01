@@ -242,6 +242,10 @@ Plug 'junegunn/vim-slash'
 noremap <silent> <Plug>(slash-after) :<C-u>ShowSearchIndex<CR>
 xunmap <Plug>(slash-after)
 
+" --- peekaboo ---
+" Shows contents of registers when @ or " is pressed
+Plug 'junegunn/vim-peekaboo'
+
 
 " ==============================================================================
 " COMMANDS
