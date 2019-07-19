@@ -13,7 +13,7 @@ at_exit {
 }
 
 if __FILE__ == $0
-	now = Time.now.strftime('%Y%m%d-%H%M%S-Week%U-%a-%T')
+	now = Time.now.strftime('%Y%m%d-%H%M%S-Week%V-%a-%T')
 	options = Hash.new
 	parser = OptionParser.new "Usage: #{$0} [options] [FILE]" do |opts|
 		opts.on '-h', '--help', 'Show this message' do
