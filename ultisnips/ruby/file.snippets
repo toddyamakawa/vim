@@ -1,0 +1,86 @@
+
+# vim: ft=snippets
+
+# ==============================================================================
+# FILE COMMANDS
+# ==============================================================================
+
+snippet dir "" w
+File.directory?(${0:"/path/to/dir"})
+endsnippet
+
+snippet dirname "" w
+File.dirname${0:"/path/to/file"})
+endsnippet
+
+snippet exists "" w
+File.exists?(${0:"/path/to/file"})
+endsnippet
+
+snippet file "" w
+File.file?(${0:"/path/to/file"})
+endsnippet
+
+snippet realpath "" b
+File.realpath(${0:file})
+endsnippet
+
+# ==============================================================================
+# DIRECTORY COMMANDS
+# ==============================================================================
+
+snippet cd "" b
+Dir.chdir(${0:dir}) do
+	puts "PWD=#{Dir.pwd}"
+end
+endsnippet
+
+snippet glob "" w
+Dir.glob("#{${0:"/path/to/dir/*"}}/*")
+endsnippet
+
+snippet mktemp "" b
+require 'tmpdir'
+${0:tmpdir} = Dir.mktmpdir()
+at_exit { FileUtils.remove_entry($0) }
+endsnippet
+
+snippet pwd "" b
+Dir.pwd
+endsnippet
+
+
+# ==============================================================================
+# FILE UTILITY COMMANDS
+# ==============================================================================
+
+snippet cp "" b
+require 'fileutils'
+FileUtils.copy(${1:['SRC']}, ${2:'DEST'})
+endsnippet
+
+snippet mkdir "" b
+require 'fileutils'
+FileUtils.mkdir_p(${0:'/path/to/dir'})
+endsnippet
+
+snippet mv ""
+require 'fileutils'
+FileUtils.mv(${1:['SRC']}, ${2:'DEST'}, force: true)
+endsnippet
+
+snippet ln "ln -s" b
+require 'fileutils'
+FileUtils.symlink(${1:['targets']}, ${2:'dest'}, force: true)
+endsnippet
+
+snippet rm ""
+require 'fileutils'
+FileUtils.remove(${1:['files']}, force: true)
+endsnippet
+
+snippet symlink "symlink" b
+require 'fileutils'
+FileUtils.symlink(${1:['targets']}, ${2:'dest'}, force: true)
+endsnippet
+

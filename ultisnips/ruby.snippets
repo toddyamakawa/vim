@@ -2,34 +2,6 @@
 # vim: ft=snippets
 
 # ==============================================================================
-# LIBRARIES
-# ==============================================================================
-snippet file "" w
-File.file?(${1:"/path/to/file"})
-endsnippet
-
-snippet dir "" w
-File.directory?(${1:"/path/to/dir"})
-endsnippet
-
-snippet glob "" w
-Dir.glob(${1:"/path/to/dir/*"})
-endsnippet
-
-snippet mktemp "" b
-require 'tmpdir'
-${1:tmpdir} = Dir.mktmpdir()
-at_exit { FileUtils.remove_entry($1) }
-endsnippet
-
-snippet cd "" b
-Dir.chdir(${1:dir}) do
-	puts "PWD=#{Dir.pwd}"
-end
-endsnippet
-
-
-# ==============================================================================
 # ARRAY OPERATIONS
 # ==============================================================================
 snippet each "" w
