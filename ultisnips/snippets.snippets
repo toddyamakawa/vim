@@ -1,6 +1,9 @@
 
 # vim: ft=snippets
 
+# ==============================================================================
+# SNIPPETS
+# ==============================================================================
 # Hacky stuff to expand snippet
 snippet snip "simple snippet" b
 `echo snippet` ${1:trigger} "${2:definition}"
@@ -13,7 +16,22 @@ snippet end "" b
 `echo endsnippet`
 endsnippet
 
+# ==============================================================================
+# VARIABLES
+# ==============================================================================
 snippet $ "" i
 \${$1}
+endsnippet
+snippet 0 "" i
+\${0:$1}
+endsnippet
+snippet 1 "" i
+\${1:$1}
+endsnippet
+snippet 2 "" i
+\${2:$1}
+endsnippet
+snippet 3 "" i
+\${3:$1}
 endsnippet
 
