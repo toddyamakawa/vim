@@ -60,6 +60,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'tomasr/molokai'
 Plug 'antlypls/vim-colors-codeschool'
 Plug 'patstockwell/vim-monokai-tasty'
+Plug 'sainnhe/vim-color-desert-night'
 
 " --- Limelight ---
 " TODO: Figure out how to get this working with my current colorscheme
@@ -126,6 +127,12 @@ let g:UltiSnipsEditSplit          = 'tabdo'
 " Recommended snippets
 Plug 'honza/vim-snippets'
 
+" --- vim-which-key ---
+" :help vim-which-key-usage
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+nnoremap <silent> <space> :WhichKey '<space>'<CR>
+"  Create new menus not based on existing mappings:
+"  let g:which_key_map.b = {
 
 " --- Obsession ---
 " :help obsess
@@ -194,6 +201,7 @@ let g:signify_vcs_cmds = {
 " Asynchronous Linting Engine (ALE)
 " :help ale
 "Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " Ruby linter
 Plug 'bbatsov/rubocop'
@@ -280,6 +288,8 @@ cnoreabbrev colortable XtermColorTable
 " EXPERIMENTAL PLUGINS
 " ==============================================================================
 "Plug 'tpope/vim-dispatch'
+
+"https://github.com/segeljakt/vim-silicon
 
 
 " ==============================================================================
