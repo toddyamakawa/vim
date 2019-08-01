@@ -1,6 +1,16 @@
 
+# vim: ft=snippets
+
 snippet #!
 #!/usr/bin/env bash
+endsnippet
+
+snippet at_exit "definition" b
+function at_exit() {
+	local RETVAL=$?
+	echo -e "command: $@\nexit: $RETVAL"
+}
+eval trap "'at_exit \$0 $@'" EXIT
 endsnippet
 
 snippet do
@@ -15,6 +25,12 @@ while [[ ${1:condition} ]]; do
 done
 endsnippet
 
+# ==============================================================================
+# VARIABLES
+# ==============================================================================
+snippet current "definition" b
+declare -r CURRENT_DIR=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
+endsnippet
 snippet $ "[$0] filename"
 \$0
 endsnippet
