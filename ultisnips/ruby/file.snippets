@@ -5,6 +5,10 @@
 # FILE COMMANDS
 # ==============================================================================
 
+snippet basename "" w
+File.basename(${0:"/path/to/file"})
+endsnippet
+
 snippet dir "" w
 File.directory?(${0:"/path/to/dir"})
 endsnippet
@@ -19,6 +23,14 @@ endsnippet
 
 snippet file "" w
 File.file?(${0:"/path/to/file"})
+endsnippet
+
+snippet grep "definition" w
+File.readlines(${1:"/path/to/file"}).grep(${2:/regex/})
+endsnippet
+
+snippet read "" b
+File.read(${0:file})
 endsnippet
 
 snippet realpath "" b

@@ -13,6 +13,10 @@ function at_exit() {
 eval trap "'at_exit \$0 $@'" EXIT
 endsnippet
 
+snippet -
+-${1:arg}) $1=\$1; shift;;
+endsnippet
+
 snippet do
 do
 	$1
@@ -31,6 +35,14 @@ endsnippet
 snippet current "definition" b
 declare -r CURRENT_DIR=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 endsnippet
+
+snippet string "Multi-line string"
+${1:varname}=$(cat <<-EOF
+$0
+EOF
+)
+endsnippet
+
 snippet $ "[$0] filename"
 \$0
 endsnippet

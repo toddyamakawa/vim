@@ -16,6 +16,50 @@ snippet reject "array.reject" w
 reject { |${1:element}| $1 }
 endsnippet
 
+
+# ==============================================================================
+# OPTION PARSER
+# ==============================================================================
+snippet parse "parse arguments"
+# Parse arguments
+begin
+	parser.parse!
+rescue OptionParser::InvalidOption => e
+	puts e
+	puts parser
+	exit 2
+end
+endsnippet
+
+snippet parse "parse arguments and store passthrough arguments"
+# Parse arguments
+passthrough_args = Array.new
+begin
+	parser.parse!(ARGV)
+rescue OptionParser::InvalidOption => e
+	passthrough_args += e.args
+	passthrough_args.append(ARGV.shift) if ARGV.first =~ /^[^-]/
+	retry
+end
+endsnippet
+
+
+# ==============================================================================
+# MISCELLANEOUS
+# ==============================================================================
+
+snippet rescue "" b
+rescue => error
+	puts error.message
+	puts error.backtrace
+	puts error.backtrace.inspect
+end
+endsnippet
+
+snippet # "" i
+#{$1}
+endsnippet
+
 snippet log "" b
 $stdout = Class.new do
 	def initialize
