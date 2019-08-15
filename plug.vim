@@ -34,20 +34,21 @@ Plug 'easymotion/vim-easymotion'
 
 "let g:EasyMotion_keys='1234567890hklyuiopnm,qwertzxcvbasdgjf;'
 
-nmap <silent><unique> ;t <Plug>(easymotion-t)
-nmap <silent><unique> ;T <Plug>(easymotion-T)
-nmap <silent><unique> ;f <Plug>(easymotion-f)
-nmap <silent><unique> ;F <Plug>(easymotion-F)
-nmap <silent><unique> ;n <Plug>(easymotion-n)
-nmap <silent><unique> ;N <Plug>(easymotion-N)
-nmap <silent><unique> ;s <Plug>(easymotion-s)
-"nnoremap <silent><unique> ;; ;
+" REVISIT: Figure out some good keys
+"let g:EasyMotion_startofline = 0
+"nmap <silent><unique> 1j <Plug>(easymotion-sol-j)
+"nmap <silent><unique> 1k <Plug>(easymotion-sol-k)
+"vmap <silent><unique> 1j <Plug>(easymotion-j)
+"vmap <silent><unique> 1k <Plug>(easymotion-k)
 
-let g:EasyMotion_startofline = 0
-nmap <silent><unique> ;j <Plug>(easymotion-sol-j)
-nmap <silent><unique> ;k <Plug>(easymotion-sol-k)
-vmap <silent><unique> ;j <Plug>(easymotion-j)
-vmap <silent><unique> ;k <Plug>(easymotion-k)
+"nmap <silent><unique> 1t <Plug>(easymotion-t)
+"nmap <silent><unique> 1T <Plug>(easymotion-T)
+"nmap <silent><unique> 1f <Plug>(easymotion-f)
+"nmap <silent><unique> 1F <Plug>(easymotion-F)
+"nmap <silent><unique> 1n <Plug>(easymotion-n)
+"nmap <silent><unique> 1N <Plug>(easymotion-N)
+"nmap <silent><unique> 1s <Plug>(easymotion-s)
+nmap <silent><unique> <C-s> <Plug>(easymotion-s)
 
 
 " ==============================================================================
