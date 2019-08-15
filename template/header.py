@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 dummy='''
 '
-exec /arm/tools/setup/bin/mrun +python/python/3.6.1 python $0 ${1+"$@"}
+exec /arm/tools/setup/bin/mrun +swdev +python/python/3.6.1 python $0 ${1+"$@"}
 '
 '''
 #!/usr/bin/env python

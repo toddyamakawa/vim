@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-exec /arm/tools/setup/bin/mrun +ruby/ruby/2.5.1 ruby $0 "$@"
+exec /arm/tools/setup/bin/mrun +swdev +ruby/ruby/2.5.1 ruby $0 "$@"
 #!/usr/bin/env ruby
 
 require 'optparse'
