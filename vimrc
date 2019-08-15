@@ -101,8 +101,9 @@ set belloff=all
 " VISUAL MODE
 " ==============================================================================
 
-" Enter block visual mode with 'vv'
-nnoremap vv <C-v>
+" Enter block visual mode with 'v'
+" Or press 'vv' from normal mode
+vnoremap v <C-v>
 
 " Exit visual mode with 'q'
 vnoremap q <Esc>
