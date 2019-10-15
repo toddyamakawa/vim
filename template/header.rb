@@ -15,7 +15,10 @@ at_exit {
 if __FILE__ == $0
 	now = Time.now.strftime('%Y%m%d-%H%M%S-Week%V-%a-%T')
 	options = Hash.new
-	parser = OptionParser.new "Usage: #{$0} [options] [FILE]" do |opts|
+	parser = OptionParser.new do |opts|
+		opts.banner = "Usage: #{$0} [options] [FILE]"
+		opts.separator ''
+		opts.separator 'Options:'
 		opts.on '-h', '--help', 'Show this message' do
 			puts opts
 			exit
