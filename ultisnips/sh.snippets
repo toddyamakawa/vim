@@ -29,6 +29,40 @@ while [[ ${1:condition} ]]; do
 done
 endsnippet
 
+snippet then "" w
+then
+	$1
+fi
+endsnippet
+
+snippet fail
+{ echo -e "${2:file not found}" 1>&2; exit 2; }
+endsnippet
+
+
+# ==============================================================================
+# TEST
+# ==============================================================================
+snippet d "" w
+[[ -d ${1:/path/to/dir} ]]
+endsnippet
+snippet dir "" w
+[[ -d ${1:/path/to/dir} ]]
+endsnippet
+snippet f "" w
+[[ -f ${1:filename} ]]
+endsnippet
+snippet file "" w
+[[ -f ${1:filename} ]]
+endsnippet
+snippet n "" w
+[[ -n "$$${1:var}" ]]
+endsnippet
+snippet z "" w
+[[ -z "$$${1:var}" ]]
+endsnippet
+
+
 # ==============================================================================
 # VARIABLES
 # ==============================================================================
