@@ -48,6 +48,24 @@ endsnippet
 # MISCELLANEOUS
 # ==============================================================================
 
+snippet hostname "" w
+require 'socket'
+hostname = Socket.gethostbyname(Socket.gethostname()).first
+endsnippet
+
+snippet whoami "" w
+require 'etc'
+Etc.getpwuid(Process.uid).name
+endsnippet
+
+snippet printf_hash "use format specifiers to print hash" b
+def printf_hash(info, format = '%10b %3r %3p %3d')
+	return format.gsub(/%(\d*)([brpd])/) do |match|
+		info[\$2].to_s.ljust(\$1.to_i)
+	end
+end
+endsnippet
+
 snippet rescue "" b
 rescue => error
 	puts error.message

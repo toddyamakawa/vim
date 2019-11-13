@@ -6,20 +6,31 @@
 # ==============================================================================
 snippet run "Open3.capture3(command)" b
 require 'open3'
-stdout, stderr, status = Open3.capture3(${1:'command'})
-raise "Command '#{$1}' failed" unless status.exitstatus == 0
+${2:command} = [${1:'ls', '-l'}]
+puts "=> #{$2.join(' ')}"
+stdout, stderr, status = Open3.capture3(*$2)
+if status.exitstatus != 0
+	$stderr.puts stderr
+	$stderr.puts "Command '#{$2.join(' ')}' failed"
+	exit status.exitstatus
+end
 endsnippet
 
 snippet run "PTY.spawn(command)" b
 require 'pty'
-PTY.spawn(${1:'command'}) do |stdout, stdin, pid|
+${2:command} = [${1:'ls', '-l'}]
+puts "=> #{$2.join(' ')}"
+PTY.spawn(*$2) do |stdout, stdin, pid|
 	stdout.each do |line|
 		puts line
 	end
 	rescue Errno::EIO
 end
 status = \$?
-raise "Command '#{$1}' failed" unless status.exitstatus == 0
+if status.exitstatus != 0
+	$stderr.puts "Command '#{$2.join(' ')}' failed"
+	exit status.exitstatus
+end
 endsnippet
 
 snippet log "" b

@@ -6,7 +6,7 @@
 # ==============================================================================
 
 snippet basename "" w
-File.basename(${0:"/path/to/file"})
+File.basename(${1:"/path/to/file"}, File.extname($1))
 endsnippet
 
 snippet dir "" w
@@ -14,7 +14,7 @@ File.directory?(${0:"/path/to/dir"})
 endsnippet
 
 snippet dirname "" w
-File.dirname${0:"/path/to/file"})
+File.dirname(${0:"/path/to/file"})
 endsnippet
 
 snippet exists "" w
@@ -29,13 +29,28 @@ snippet grep "definition" w
 File.readlines(${1:"/path/to/file"}).grep(${2:/regex/})
 endsnippet
 
-snippet read "" b
-File.read(${0:file})
+snippet owner "" w
+require 'etc'
+owner = Etc.getpwuid(File.stat(${1:file}).uid).name
 endsnippet
 
-snippet realpath "" b
+snippet read "" w
+File.read(${0:file}).scrub('')
+endsnippet
+
+snippet realpath "" s
 File.realpath(${0:file})
 endsnippet
+
+snippet touch "" b
+require 'fileutils'
+FileUtils.touch(${1:"/path/to/file"})
+endsnippet
+
+snippet write "" w
+File.write(${1:file}, ${2:string})
+endsnippet
+
 
 # ==============================================================================
 # DIRECTORY COMMANDS
@@ -71,19 +86,24 @@ require 'fileutils'
 FileUtils.copy(${1:['SRC']}, ${2:'DEST'})
 endsnippet
 
+snippet ln "ln -s" b
+require 'fileutils'
+FileUtils.symlink(${1:['targets']}, ${2:'dest'}, force: true)
+endsnippet
+
 snippet mkdir "" b
 require 'fileutils'
 FileUtils.mkdir_p(${0:'/path/to/dir'})
 endsnippet
 
+snippet md5sum ""
+require 'digest/md5'
+Digest::MD5.hexdigest(${1:'string'})
+endsnippet
+
 snippet mv ""
 require 'fileutils'
 FileUtils.mv(${1:['SRC']}, ${2:'DEST'}, force: true)
-endsnippet
-
-snippet ln "ln -s" b
-require 'fileutils'
-FileUtils.symlink(${1:['targets']}, ${2:'dest'}, force: true)
 endsnippet
 
 snippet rm ""
