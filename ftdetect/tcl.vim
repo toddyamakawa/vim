@@ -1,4 +1,5 @@
 augroup tcl_filetype
+	autocmd BufNewFile,BufRead *.adc     set filetype=tcl
 	autocmd BufNewFile,BufRead *.do     set filetype=tcl
 	autocmd BufNewFile,BufRead *.qel    set filetype=tcl
 	autocmd BufNewFile,BufRead *.utf    set filetype=tcl
