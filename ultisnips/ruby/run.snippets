@@ -6,21 +6,22 @@
 # ==============================================================================
 snippet run "Open3.capture3(command)" b
 require 'open3'
-${2:command} = [${1:'ls', '-l'}]
-puts "=> #{$2.join(' ')}"
-stdout, stderr, status = Open3.capture3(*$2)
+${1:command} = [${2:'ls', '-l'}]
+puts "=> #{$1.join(' ')}"
+stdout, stderr, status = Open3.capture3(*$1)
+puts stdout unless stdout.empty?
 if status.exitstatus != 0
-	$stderr.puts stderr
-	$stderr.puts "Command '#{$2.join(' ')}' failed"
+	$stderr.puts stderr unless stderr.empty?
+	$stderr.puts "Command '#{$1.join(' ')}' failed"
 	exit status.exitstatus
 end
 endsnippet
 
 snippet run "PTY.spawn(command)" b
 require 'pty'
-${2:command} = [${1:'ls', '-l'}]
-puts "=> #{$2.join(' ')}"
-PTY.spawn(*$2) do |stdout, stdin, pid|
+${1:command} = [${2:'ls', '-l'}]
+puts "=> #{$1.join(' ')}"
+PTY.spawn(*$1) do |stdout, stdin, pid|
 	stdout.each do |line|
 		puts line
 	end
@@ -28,7 +29,7 @@ PTY.spawn(*$2) do |stdout, stdin, pid|
 end
 status = \$?
 if status.exitstatus != 0
-	$stderr.puts "Command '#{$2.join(' ')}' failed"
+	$stderr.puts "Command '#{$1.join(' ')}' failed"
 	exit status.exitstatus
 end
 endsnippet

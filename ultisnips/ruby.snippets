@@ -48,6 +48,16 @@ endsnippet
 # MISCELLANEOUS
 # ==============================================================================
 
+# raise is not a good command to use for tools
+# - stacktrace dumps can confuse users
+snippet raise ""
+$stderr.puts "ERROR: $1"
+exit 2
+endsnippet
+snippet err "" b
+$stderr.puts "ERROR: $1"
+endsnippet
+
 snippet hostname "" w
 require 'socket'
 hostname = Socket.gethostbyname(Socket.gethostname()).first
