@@ -34,6 +34,10 @@ require 'etc'
 owner = Etc.getpwuid(File.stat(${1:file}).uid).name
 endsnippet
 
+snippet mtime "" w
+File.mtime(${0:"/path/to/file"})
+endsnippet
+
 snippet read "" w
 File.read(${0:file}).scrub('')
 endsnippet
@@ -48,7 +52,7 @@ FileUtils.touch(${1:"/path/to/file"})
 endsnippet
 
 snippet write "" w
-File.write(${1:file}, ${2:string})
+File.write(${1:file}, ${2:"string"})
 endsnippet
 
 
