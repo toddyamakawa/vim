@@ -63,6 +63,10 @@ Plug 'antlypls/vim-colors-codeschool'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'sainnhe/vim-color-desert-night'
 
+" --- context.vim ---
+" Shows context (e.g. functions, loops, conditions) of current buffer
+Plug 'wellle/context.vim'
+
 " --- Limelight ---
 " TODO: Figure out how to get this working with my current colorscheme
 "Plug 'junegunn/limelight.vim'
