@@ -26,15 +26,6 @@ nnoremap <silent> <Leader>l <C-w>l
 nnoremap <Leader>= <C-w>=
 
 
-" --- Visibility ---
-
-" Toggle list/number with <Leader>n
-nnoremap <Leader>n :set number! relativenumber! list!<CR>
-
-" Toggle wrap
-nnoremap <Leader>sw :set wrap!<CR>
-
-
 " --- Editing ---
 
 " Toggle expand tab
@@ -51,16 +42,9 @@ nnoremap <Leader>dx :%s/[^\x00-\x7F]//g<Enter>
 nnoremap <Leader>d<Enter> :%s/\r//g<Enter>
 
 
-
 " --- Miscellaneous ---
 
 " Backup <Enter> key because <Enter> is mapped to :
 nnoremap <Leader><Enter> <Enter>
 vnoremap <Leader><Enter> <Enter>
-
-
-" --- .vimrc ---
-" Don't really use these anymore
-"nnoremap <Leader>vi :e $MYVIMRC<Enter>
-"nnoremap <Leader>vs :source $MYVIMRC<Enter>
 

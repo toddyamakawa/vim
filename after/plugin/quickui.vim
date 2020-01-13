@@ -25,13 +25,27 @@ hi! QuickHelp ctermfg=247 guifg=#959173
 " ==============================================================================
 call quickui#menu#reset()
 
+" File
+call quickui#menu#install("&File", [
+		\ ['Open &buffer', 'call quickui#tools#list_buffer(''tabedit'')']
+	\ ])
+
+call quickui#menu#install("&Type", [
+		\ ['log', 'set ft=log syntax=log'],
+		\ ['verilog', 'setfiletype verilog_systemverilog']
+	\ ])
+
 " Options
 call quickui#menu#install("&Options", [
 		\ ['set &cursorline %{&cursorline? "off":"on"}', 'set cursorline!'],
 		\ ['set &expandtab %{&expandtab? "off":"on"}',   'set expandtab!'],
 		\ ['set &list %{&list? "off":"on"}',             'set list!'],
 		\ ['set &paste %{&paste? "off":"on"}',           'set paste!'],
-		\ ['set &spell %{&spell? "off":"on"}',           'set spell!']
+		\ ['set &spell %{&spell? "off":"on"}',           'set spell!'],
+		\ ['set tabwidth=&2',                            'set ts=2 sts=0 sts=0'],
+		\ ['set tabwidth=&4',                            'set ts=4 sts=0 sts=0'],
+		\ ['set tabwidth=&8',                            'set ts=8 sts=0 sts=0'],
+		\ ['set &wrap %{&wrap? "off":"on"}',             'set wrap!']
 	\ ])
 
 " Help (weight=10000)

@@ -63,9 +63,10 @@ silent! colorscheme jellybeans " Favorite colorscheme
 
 " Change background color beyond column 80
 let &colorcolumn=join(range(81,999),",")
-highlight clear ColorColumn
 au InsertEnter * highlight ColorColumn guibg=#000000 ctermbg=16
 au InsertLeave * highlight clear ColorColumn
+"highlight clear ColorColumn
+
 
 " ==============================================================================
 " GENERAL SHORTCUTS
@@ -173,14 +174,10 @@ vnoremap * y/<C-R>"<CR>
 
 " Delete matching rows
 nnoremap d/ :g//d<Enter>
+" REVISIT: Figure out how to use the blackhole register
+" https://vim.fandom.com/wiki/Power_of_g
+"nnoremap d/ :g//"_d<Enter>
 
 " Replace matching words
 nnoremap c/ :%s///g<Left><Left>
-
-" --- Abbreviations ---
-
-" Set filetypes
-cnoreabbrev sfl set ft=log syntax=log
-cnoreabbrev sfv setfiletype verilog_systemverilog
-
 
