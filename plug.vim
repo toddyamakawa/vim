@@ -62,6 +62,7 @@ Plug 'tomasr/molokai'
 Plug 'antlypls/vim-colors-codeschool'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'sainnhe/vim-color-desert-night'
+Plug 'YorickPeterse/happy_hacking.vim'
 
 " --- context.vim ---
 " Shows context (e.g. functions, loops, conditions) of current buffer
@@ -105,6 +106,10 @@ let g:fzf_action = {
 	\ 'ctrl-s': 'split',
 	\ 'ctrl-v': 'vsplit'
 \ }
+
+" --- quickui ---
+" Opens a menu, listbox, or textbox
+Plug 'skywind3000/vim-quickui'
 
 
 " ==============================================================================
@@ -279,6 +284,7 @@ Plug 'tpope/vim-repeat'
 Plug 'dag/vim-fish'                   " fish
 Plug 'keith/tmux.vim'                 " tmux
 Plug 'vhda/verilog_systemverilog.vim' " verilog/systemverilog
+Plug 'ARM9/arm-syntax-vim'
 
 " --- vim-scripts ---
 Plug 'vim-scripts/CountJump'
