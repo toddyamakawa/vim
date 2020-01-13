@@ -49,9 +49,14 @@ endf
 function MyTabLabel(n)
 	let l:buflist = tabpagebuflist(a:n)
 	let l:winnr   = tabpagewinnr(a:n)
-	let l:tabnum  = '%#TabNumber#[' . a:n . ']'
+	"let l:tabnum  = '%#TabNumber#[' . a:n . ']'
 	"let l:bufname = bufname(l:buflist[l:winnr-1])
+
+	" Get buffername
 	let l:bufname = bufname(l:buflist[0])
+	if l:bufname == '<context.vim>'
+		let l:bufname = bufname(l:buflist[1])
+	endif
 	let l:bufbase = fnamemodify(l:bufname, ':t:r')
 
 	" Set tab page number (for mouse clicks)
