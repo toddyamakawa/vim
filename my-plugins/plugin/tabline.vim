@@ -55,7 +55,11 @@ function MyTabLabel(n)
 	" Get buffername
 	let l:bufname = bufname(l:buflist[0])
 	if l:bufname == '<context.vim>'
-		let l:bufname = get(l:buflist, 1, '<context>')
+		if len(l:buflist) > 1
+			let l:bufname = bufname(l:buflist[1])
+		else
+			let l:bufname = '<context>'
+		end
 	endif
 	let l:bufbase = fnamemodify(l:bufname, ':t:r')
 
