@@ -4,6 +4,10 @@
 " ==============================================================================
 " https://github.com/skywind3000/vim-quickui
 
+" Check Vim version
+if v:version < 802
+	finish
+endif
 
 " ==============================================================================
 " SETTINGS
@@ -23,7 +27,13 @@ hi! QuickHelp ctermfg=247 guifg=#959173
 " ==============================================================================
 " MENU
 " ==============================================================================
-call quickui#menu#reset()
+
+" Check plugin
+try
+	call quickui#menu#reset()
+catch
+	finish
+endtry
 
 " File
 call quickui#menu#install("&File", [
