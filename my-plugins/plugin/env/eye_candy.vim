@@ -16,7 +16,6 @@ set virtualedit=block
 set number         " Show line number
 set relativenumber " Show relative line number
 set showmatch      " Show matching parantheses
-set foldcolumn=3   " Show columns for folds
 
 " Highlight current line
 "TODO: Make CursorLine change color for insert mode
