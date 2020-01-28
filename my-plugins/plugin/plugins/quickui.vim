@@ -17,11 +17,11 @@ endif
 noremap <C-o> :call quickui#menu#open()<cr>
 
 " Colors
-hi! QuickBG ctermfg=0 ctermbg=7 guifg=black guibg=gray
-hi! QuickSel cterm=bold ctermfg=0 ctermbg=2 gui=bold guibg=brown guifg=gray
-hi! QuickKey term=bold ctermfg=9 gui=bold guifg=#f92772
-hi! QuickOff ctermfg=59 guifg=#75715e
-hi! QuickHelp ctermfg=247 guifg=#959173
+hi! QuickBG   ctermfg=251 ctermbg=239
+hi! QuickSel  cterm=bold ctermfg=239 ctermbg=251
+hi! QuickKey  cterm=bold ctermfg=39
+hi! QuickOff  ctermfg=59
+hi! QuickHelp ctermfg=247
 
 
 " ==============================================================================
@@ -37,12 +37,25 @@ endtry
 
 " File
 call quickui#menu#install("&File", [
-		\ ['Open &buffer', 'call quickui#tools#list_buffer(''tabedit'')']
+		\ ['Open &Buffer', 'call quickui#tools#list_buffer(''tabedit'')'],
+		\ ['--',           ''],
+		\ ['New &Tab',     '$tabnew %'],
+		\ ['&Close Tab',   'tabclose']
 	\ ])
 
+" Plugins
+call quickui#menu#install("&Plugins", [
+		\ ['&ANSI',                'AnsiEsc'],
+		\ ['&Rainbow Indentation', 'RainbowLevelsToggle'],
+		\ ['&UltiSnips Edit',      'UltiSnipsEdit'],
+		\ ['UltiSnips &List',      'call UltiSnips#ListSnippets()'],
+		\ ['&Xterm Color Table',   'XtermColorTable']
+	\ ])
+
+" File types
 call quickui#menu#install("&Type", [
 		\ ['log', 'set ft=log syntax=log'],
-		\ ['verilog', 'setfiletype verilog_systemverilog']
+		\ ['&verilog', 'setfiletype verilog_systemverilog']
 	\ ])
 
 " Options

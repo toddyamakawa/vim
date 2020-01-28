@@ -88,9 +88,7 @@ autocmd OptionSet tabstop set sts=0 sw=0
 let g:indentLine_char = '|'
 
 " --- Rainbow Indentation ---
-"Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
-Plug 'thiagoalessio/rainbow_levels.vim'
-cnoreabbrev rain RainbowLevelsToggle
+Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 
 "Plug 'nathanaelkane/vim-indent-guides.git'
 "Plug 'tpope/vim-sleuth'
@@ -119,8 +117,7 @@ Plug 'skywind3000/vim-quickui'
 " --- UltiSnips ---
 " :help snippet
 Plug 'SirVer/ultisnips'
-cnoreabbrev ultie  UltiSnipsEdit
-cnoreabbrev ultift UltiSnipsAddFiletypes
+cnoreabbrev ultie UltiSnipsEdit
 
 " Trigger configuration
 " Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe
@@ -296,7 +293,6 @@ cnoreabbrev ansi AnsiEsc
 
 " --- Miscellaneous ---
 Plug 'guns/xterm-color-table.vim',  { 'on': 'XtermColorTable' }
-cnoreabbrev colortable XtermColorTable
 
 
 " ==============================================================================
