@@ -1,12 +1,44 @@
 #%Module
 # vi: filetype=tcl
 
+# ==============================================================================
+# MODULE INFORMATION
+# ==============================================================================
+# Usage:
 # $> module load $PWD/modulefile
+# $> mrun +$PWD/modulefile <command>
 
-# Simple variables
+module-whatis "Module to set up environment for TOOL_NAME."
+
+# Packages
+package require arm
+package require arm::modules::tool
+
+# Module parameters
+set Vendor_Tag  VENDOR_NAME
+set Tool_Tag    TOOL_NAME
+set Version_Tag 1.0.0
 set ModulesCurrentModulefile [info script]
 set ModulesCurrentModulepath [file dirname $ModulesCurrentModulefile]
 
-setenv GEM_PATH $ModulesCurrentModulepath/.gem
-module load swdev ruby/ruby/2.5.1 ruby/gems/2.6.11
+
+# ==============================================================================
+# ENVIRONMENT
+# ==============================================================================
+initSet
+
+	# Set environment variables
+	setenv TOOL_NAME_ROOT $TOOL_NAME_ROOT
+
+	# Prepend path
+	prepend-path PATH $TOOL_NAME_ROOT/bin
+
+	# Load essential modules
+	load-once core
+	load-once util
+	load-once swdev
+	load-once eda
+	load-once arm/cluster
+
+exitSet
 
