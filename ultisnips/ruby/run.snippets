@@ -34,6 +34,15 @@ if status.exitstatus != 0
 end
 endsnippet
 
+snippet thread "definition"
+${1:thread_name}_mutex = Mutex.new
+$1_thread = Thread.new do
+	$1_mutex.synchronize do
+		# Do stuff
+	end
+end
+endsnippet
+
 snippet log "" b
 $stdout = Class.new do
 	def initialize
