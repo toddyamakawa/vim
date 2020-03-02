@@ -32,14 +32,15 @@ Plug 'jeetsukumaran/vim-indentwise'
 " Replaces 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
 
+let g:EasyMotion_verbose = 0
 "let g:EasyMotion_keys='1234567890hklyuiopnm,qwertzxcvbasdgjf;'
 
-" REVISIT: Figure out some good keys
-"let g:EasyMotion_startofline = 0
-"nmap <silent><unique> 1j <Plug>(easymotion-sol-j)
-"nmap <silent><unique> 1k <Plug>(easymotion-sol-k)
-"vmap <silent><unique> 1j <Plug>(easymotion-j)
-"vmap <silent><unique> 1k <Plug>(easymotion-k)
+" Line motions
+let g:EasyMotion_startofline = 0
+nmap <silent><unique> gj <Plug>(easymotion-sol-j)
+nmap <silent><unique> gk <Plug>(easymotion-sol-k)
+vmap <silent><unique> gj <Plug>(easymotion-j)
+vmap <silent><unique> gk <Plug>(easymotion-k)
 
 "nmap <silent><unique> 1t <Plug>(easymotion-t)
 "nmap <silent><unique> 1T <Plug>(easymotion-T)
@@ -48,7 +49,7 @@ Plug 'easymotion/vim-easymotion'
 "nmap <silent><unique> 1n <Plug>(easymotion-n)
 "nmap <silent><unique> 1N <Plug>(easymotion-N)
 "nmap <silent><unique> 1s <Plug>(easymotion-s)
-nmap <silent><unique> <C-s> <Plug>(easymotion-s)
+nmap <silent><unique> // <Plug>(easymotion-s)
 
 
 " ==============================================================================
