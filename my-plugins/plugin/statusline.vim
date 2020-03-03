@@ -1,9 +1,9 @@
 
-" --- Always Display Status Line ---
-set laststatus=2
+" ==============================================================================
+" FUNCTIONS
+" ==============================================================================
 
-
-" --- Highlight Groups ---
+" Highlight groups
 function! StatuslineSetBG(bg)
 	exec 'highlight StatusLine        ctermfg=249 ctermbg='.a:bg
 	exec 'highlight StatusLineRed     ctermfg=1   ctermbg='.a:bg
@@ -13,11 +13,6 @@ function! StatuslineSetBG(bg)
 	exec 'highlight StatusLineMagenta ctermfg=5   ctermbg='.a:bg
 	exec 'highlight StatusLineCyan    ctermfg=6   ctermbg='.a:bg
 endfunction
-
-" Default color
-call StatuslineSetBG(237)
-
-" --- User-Definend Colors ---
 
 " REVISIT: Implement in new function
 " White on Blue if Insert Mode
@@ -29,7 +24,6 @@ call StatuslineSetBG(237)
 	"autocmd CmdlineEnter * hi User9 ctermfg=7 ctermbg=5
 	"autocmd CmdlineLeave * hi User9 ctermfg=7 ctermbg=0
 "endif
-
 
 " File Size
 function! StatuslineFileSize()
@@ -44,7 +38,6 @@ function! StatuslineFileSize()
 	return l:bytes
 endfunction
 
-
 " File Info
 " filetype, fileencoding, and fileformat
 function! StatuslineFileInfo(width)
@@ -58,7 +51,9 @@ endfunction
 " ==============================================================================
 " GENERATE STATUSLINE
 " ==============================================================================
-function! MyStatusLine(bufnr, bg, width)
+
+" Left
+function! MyStatusLineLeft()
 	let l:statusline = ''
 
 	let l:default = '%#StatusLine#'
@@ -69,13 +64,6 @@ function! MyStatusLine(bufnr, bg, width)
 	let l:magenta = '%#StatusLineMagenta#'
 	let l:cyan    = '%#StatusLineCyan#'
 
-	call StatuslineSetBG(a:bg)
-
-
-	" ==========================================================================
-	" LEFT STATUSLINE
-	" ==========================================================================
-
 	"let l:statusline .= &modified ? l:red : l:yellow " Red if modified
 	"let l:statusline .= '[%{&readonly?"-":"%n"}]'
 	let l:statusline .= l:yellow.'[%n]'.l:red.'%m'
@@ -83,23 +71,30 @@ function! MyStatusLine(bufnr, bg, width)
 	" relative/path/to/file
 	let l:statusline .= l:default.'%f'
 
-	" ==========================================================================
-	" RIGHT STATUSLINE
-	" ==========================================================================
-	let l:statusline .= l:default.'%='
+	" Return
+	return l:statusline
+endfunction
+
+" Right
+function! MyStatusLineRight(width)
+	let l:statusline = ''
+
+	let l:default = '%#StatusLine#'
+	let l:red     = '%#StatusLineRed#'
+	let l:green   = '%#StatusLineGreen#'
+	let l:yellow  = '%#StatusLineYellow#'
+	let l:blue    = '%#StatusLineBlue#'
+	let l:magenta = '%#StatusLineMagenta#'
+	let l:cyan    = '%#StatusLineCyan#'
 
 	" CurrentLine
 	let l:statusline .= l:yellow.'%6l'
-
 	" TotalLines
 	let l:statusline .= l:default.'/%L,'
-
 	" ColumnNumber
 	let l:statusline .= l:yellow.'%-3c'
-
 	" PercentFile
 	let l:statusline .= l:default.'[%3p%%]'
-
 	" filetype, fileencoding, and fileformat
 	let l:fileinfo = (a:width<80) ? '' : '.%{&fileencoding?&fileencoding:&encoding}.%{&fileformat}'
 
@@ -120,13 +115,48 @@ function! MyStatusLine(bufnr, bg, width)
 	" IndentStatus
 	let l:statusline .= '[%{&expandtab?"s":"t"}%{&tabstop.&softtabstop.&shiftwidth}]'
 
-	" Width to narrow indicator
+	" Return
+	return l:statusline
+endfunction
+
+
+function! MyStatusLine(bufnr, bg, width)
+	let l:statusline = ''
+
+	let l:default = '%#StatusLine#'
+	let l:red     = '%#StatusLineRed#'
+	let l:green   = '%#StatusLineGreen#'
+	let l:yellow  = '%#StatusLineYellow#'
+	let l:blue    = '%#StatusLineBlue#'
+	let l:magenta = '%#StatusLineMagenta#'
+	let l:cyan    = '%#StatusLineCyan#'
+
+	call StatuslineSetBG(a:bg)
+
+	let l:statusline .= MyStatusLineLeft()
+	let l:statusline .= l:default.'%='
+	let l:statusline .= MyStatusLineRight(a:width)
+
+	" Narrow-width indicator
 	let l:statusline .= (a:width<80) ? l:red.'-' : ''
 
 	return l:statusline
 endfunction
 
+
+" ==============================================================================
+" SETTINGS
+" ==============================================================================
+
+" Always display
+set laststatus=2
+
+" Default color
+call StatuslineSetBG(237)
+
+" Clear
 set statusline=
+
 augroup MyStatusLine
 	" Set statusline, pass buffer number and window width
 	autocmd!
