@@ -64,6 +64,10 @@ function! MyStatusLineLeft()
 	let l:magenta = '%#StatusLineMagenta#'
 	let l:cyan    = '%#StatusLineCyan#'
 
+	" Set mode if not normal mode
+	let l:mode = mode()
+	let l:statusline .= (l:mode=='n') ? '' : l:red.'['.l:mode.'-mode]'
+
 	"let l:statusline .= &modified ? l:red : l:yellow " Red if modified
 	"let l:statusline .= '[%{&readonly?"-":"%n"}]'
 	let l:statusline .= l:yellow.'[%n]'.l:red.'%m'
@@ -133,9 +137,17 @@ function! MyStatusLine(bufnr, bg, width)
 
 	call StatuslineSetBG(a:bg)
 
-	let l:statusline .= MyStatusLineLeft()
+	try
+		let l:statusline .= MyStatusLineLeft()
+	catch
+		let l:statusline .= l:red.'[FAILED] MyStatusLineLeft()'
+	endtry
 	let l:statusline .= l:default.'%='
-	let l:statusline .= MyStatusLineRight(a:width)
+	try
+		let l:statusline .= MyStatusLineRight(a:width)
+	catch
+		let l:statusline .= l:red.'[FAILED] MyStatusLineRight()'
+	endtry
 
 	" Narrow-width indicator
 	let l:statusline .= (a:width<80) ? l:red.'-' : ''
