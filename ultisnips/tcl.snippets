@@ -1,0 +1,21 @@
+
+# vim: ft=snippets
+
+snippet #!
+#!/usr/bin/env bash
+# \
+exec /arm/tools/setup/bin/mrun +swdev +tct/tcl/8.6.1 tclsh $0 "$@"
+#!/usr/bin/env tclsh
+endsnippet
+
+snippet wait "" b
+set wait_ms ${1:5000}
+set start_ms [clock milliseconds]
+while {[expr {([clock milliseconds] - $start_ms) <= $wait_ms}]} {
+	after 100
+	if 0 {
+		set wait_ms 0
+	}
+}
+endsnippet
+
