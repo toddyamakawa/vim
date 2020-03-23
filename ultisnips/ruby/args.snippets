@@ -1,0 +1,67 @@
+
+# vim: ft=snippets
+
+# ==============================================================================
+# OPTION PARSER
+# ==============================================================================
+
+snippet opts "Option parser" b
+require 'optparse'
+parser = OptionParser.new do |opts|
+	opts.banner = "Usage: #{\$0} [options] <STUFF>"
+	opts.separator ''
+	opts.separator 'Options:'
+	opts.on '-h', '--help', 'Show this message' do
+		puts opts
+		exit
+	end
+end
+endsnippet
+
+snippet parse "Parse arguments" b
+# Parse arguments
+begin
+	parser.parse!
+rescue OptionParser::InvalidOption => e
+	$stderr.puts e
+	$stderr.puts parser
+	exit 2
+end
+endsnippet
+
+snippet parse "Parse arguments and store passthrough arguments" b
+# Parse arguments
+passthrough_args = Array.new
+begin
+	parser.parse!(ARGV)
+rescue OptionParser::InvalidOption => e
+	passthrough_args += e.args
+	passthrough_args.append(ARGV.shift) if ARGV.first =~ /^[^-]/
+	retry
+end
+endsnippet
+
+snippet - "Add option" b
+opts.on '-${1:o}', '--${2:option-name}', '${3:Description}' do |${4:opt}|
+	${0}
+end
+endsnippet
+
+snippet -d "Add directory option" b
+opts.on '-${1:d}', '--${2:dir-name} <${3:DIR}>', '${4:Description}' do |${5:opt}|
+	if not File.directory?($5)
+		$stderr.puts "ERROR: Directory '#{$5}' not found"
+		exit 2
+	end
+end
+endsnippet
+
+snippet -f "Add file option" b
+opts.on '-${1:f}', '--${2:file-name} <${3:FILE}>', '${4:Description}' do |${5:opt}|
+	if not File.file?($5)
+		$stderr.puts "ERROR: File '#{$5}' not found"
+		exit 2
+	end
+end
+endsnippet
+
