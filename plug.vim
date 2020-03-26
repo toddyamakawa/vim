@@ -65,6 +65,12 @@ Plug 'patstockwell/vim-monokai-tasty'
 Plug 'sainnhe/vim-color-desert-night'
 Plug 'YorickPeterse/happy_hacking.vim'
 
+" --- lens.vim ---
+" Automatically resizes windows
+" :help lens
+"let g:lens#disabled_filetypes = ['nerdtree']
+Plug 'camspiers/lens.vim'
+
 " --- context.vim ---
 " Shows context (e.g. functions, loops, conditions) of current buffer
 Plug 'wellle/context.vim'
