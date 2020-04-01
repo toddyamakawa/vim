@@ -11,9 +11,9 @@ let g:mapleader="\<space>"
 " COMMANDS
 " ==============================================================================
 " Save/quit
-nnoremap <Leader>w :w!<Enter>
-nnoremap <Leader>q :q!<Enter>
-nnoremap <Leader>x :x!<Enter>
+nnoremap <unique> <Leader>w :w!<Enter>
+nnoremap <unique> <Leader>q :q!<Enter>
+nnoremap <unique> <Leader>x :x!<Enter>
 
 " Backup <Enter> key because <Enter> is mapped to :
 nnoremap <Leader><Enter> <Enter>
@@ -150,4 +150,11 @@ nnoremap <Leader>dx :%s/[^\x00-\x7F]//g<Enter>
 " Delete carriage returns
 nnoremap <Leader>d<Enter> :%s/\r//g<Enter>
 
+" Run macro over visual range
+" https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
