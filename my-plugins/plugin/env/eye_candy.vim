@@ -1,7 +1,13 @@
 
-syntax on " Enable syntax highlighting
+" Enable syntax highlighting
+syntax on
 
-set t_Co=256 " Terminal supports 256 colors
+" Terminal supports 256 colors
+set t_Co=256
+
+" Set character encoding
+scriptencoding utf-8
+set encoding=utf-8
 
 " Show tab characters and off-screen text indicator
 set list listchars=tab:▸\ ,trail:·,precedes:←,extends:→
