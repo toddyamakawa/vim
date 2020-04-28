@@ -6,6 +6,7 @@ augroup large_file
 			\ setlocal noswapfile eventignore+=FileType |
 		\ endif
 	" Always turn on syntax highlighting
-	autocmd BufReadPost * silent set syntax=on
+	" TODO: Fix this
+	"autocmd BufReadPost * silent syntax on
 augroup END
 
