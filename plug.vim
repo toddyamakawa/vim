@@ -295,7 +295,8 @@ Plug 'vim-scripts/CountJump'
 Plug 'vim-scripts/ingo-library'
 
 " --- ANSI Escape Syntax ---
-Plug 'vim-scripts/AnsiEsc.vim', { 'on': 'AnsiEsc' }
+"Plug 'vim-scripts/AnsiEsc.vim', { 'on': 'AnsiEsc' }
+Plug 'toddyamakawa/AnsiEsc.vim', { 'on': 'AnsiEsc' }
 cnoreabbrev ansi AnsiEsc
 
 " --- Miscellaneous ---
