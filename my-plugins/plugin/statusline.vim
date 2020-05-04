@@ -124,6 +124,12 @@ function! MyStatusLineRight(width)
 	" IndentStatus
 	let l:statusline .= '[%{&expandtab?"s":"t"}%{&tabstop.&softtabstop.&shiftwidth}]'
 
+
+	" Scroll statusbar
+	if exists('g:loaded_scrollstatus')
+		let l:statusline .= l:yellow.'[%{ScrollStatus()}]'
+	endif
+
 	" Return
 	return l:statusline
 endfunction
