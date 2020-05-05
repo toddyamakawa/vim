@@ -294,11 +294,6 @@ Plug 'ARM9/arm-syntax-vim'
 Plug 'vim-scripts/CountJump'
 Plug 'vim-scripts/ingo-library'
 
-" --- ANSI Escape Syntax ---
-"Plug 'vim-scripts/AnsiEsc.vim', { 'on': 'AnsiEsc' }
-Plug 'toddyamakawa/AnsiEsc.vim', { 'on': 'AnsiEsc' }
-cnoreabbrev ansi AnsiEsc
-
 " --- Miscellaneous ---
 Plug 'guns/xterm-color-table.vim',  { 'on': 'XtermColorTable' }
 
@@ -314,5 +309,6 @@ Plug 'guns/xterm-color-table.vim',  { 'on': 'XtermColorTable' }
 " ==============================================================================
 " TODD-ONLY STUFF
 " ==============================================================================
+Plug '~/.vim/github'
 Plug '~/.vim/my-plugins'
 
