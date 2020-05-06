@@ -41,20 +41,6 @@ function! s:getBinSize(numberLines, containerSize) abort
 	return l:binSize
 endfunction
 
-function! s:getBin(binSize, line, containerSize) abort
-	let l:bin = a:line / a:binSize
-
-	if l:bin > a:containerSize -1
-		return a:containerSize - 1
-	endif
-
-	return l:bin
-endfunction
-
-function! s:getBarSize(numberLines, numberVisibleLines, containerSize) abort
-	return float2nr(round(floor(a:numberVisibleLines * a:containerSize) / a:numberLines))
-endfunction
-
 function! s:isSameNumberLines() abort
 	return line('$') == s:numberLines
 endfunction
@@ -100,8 +86,14 @@ function! ScrollStatus() abort
 
 	call s:fillBar(s:binBarStart, s:barSize, s:symbol_track)
 
-	let s:binBarStart = s:getBin(s:binSize, s:firstVisibleLine, s:size)
-	let s:barSize = s:getBarSize(s:numberLines, s:numberVisibleLines, s:size)
+	" Calculate start
+	let s:binBarStart = s:firstVisibleLine / s:binSize
+	if s:binBarStart > s:size -1
+		let s:binBarStart = s:size - 1
+	endif
+
+	" Calculate bar size
+	let s:barSize = float2nr(round(floor(s:numberVisibleLines * s:size) / s:numberLines))
 
 	call s:fillBar(s:binBarStart, s:barSize, s:symbol_bar)
 
