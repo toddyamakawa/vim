@@ -13,19 +13,21 @@ set showtabline=2
 " :help setting-tabline
 
 " --- Highlight Groups ---
-highlight TabLine       ctermfg=249 ctermbg=239
-highlight TabLineSel    ctermfg=232 ctermbg=249
-highlight TabNumber     ctermfg=39  ctermbg=239
-highlight TabNumberSel  ctermfg=239 ctermbg=39
-highlight TabNumberM    ctermfg=9   ctermbg=239
-highlight TabNumberSelM ctermfg=239 ctermbg=9
+" HACK: Rename TabLine highlight groups
+execute 'highlight! MyTabLine       ctermfg=249 ctermbg=239'
+execute 'highlight! MyTabLineSel    ctermfg=232 ctermbg=249'
+execute 'highlight! MyTabNumber     ctermfg=39  ctermbg=239'
+execute 'highlight! MyTabNumberSel  ctermfg=239 ctermbg=39'
+execute 'highlight! MyTabNumberM    ctermfg=9   ctermbg=239'
+execute 'highlight! MyTabNumberSelM ctermfg=239 ctermbg=9'
+execute 'highlight! MyTabLineFill   ctermfg=103 ctermbg=103 term=reverse guifg=#9098a0'
 
 function! MyTabLine()
 	let l:tabline = ''
 
 	" Add Obsession indicator at the start
 	if exists("g:loaded_obsession")
-		let l:tabline .= '%#TabNumber#%{ObsessionStatus()} '
+		let l:tabline .= '%#MyTabNumber#%{ObsessionStatus()} '
 	endif
 
 	" For each tab
@@ -36,11 +38,11 @@ function! MyTabLine()
 	endfor
 
 	" after the last tab fill with TabLineFill and reset tab page nr
-	let l:tabline .= '%#TabLineFill#%T'
+	let l:tabline .= '%#MyTabLineFill#%T'
 
 	" right-align the label to close the current tab page
 	if tabpagenr('$') > 1
-		let l:tabline .= '%=%#TabLine#%999Xclose'
+		let l:tabline .= '%=%#MyTabLine#%999Xclose'
 	endif
 
 	return l:tabline
@@ -49,8 +51,6 @@ endf
 function MyTabLabel(n)
 	let l:buflist = tabpagebuflist(a:n)
 	let l:winnr   = tabpagewinnr(a:n)
-	"let l:tabnum  = '%#TabNumber#[' . a:n . ']'
-	"let l:bufname = bufname(l:buflist[l:winnr-1])
 
 	" Get buffername
 	let l:bufname = bufname(l:buflist[0])
@@ -72,8 +72,8 @@ function MyTabLabel(n)
 	" Check if tab selected
 	let l:tabsel = (a:n == tabpagenr() ? 'Sel' : '')
 
-	let l:tabline = '%#TabLine' . l:tabsel . '#'
-	let l:tabnum  = '%#TabNumber' .l:tabsel . l:mod .'#[' . a:n . ']'
+	let l:tabline = '%#MyTabLine' . l:tabsel . '#'
+	let l:tabnum  = '%#MyTabNumber' .l:tabsel . l:mod .'#[' . a:n . ']'
 
 	return l:tabmouse . l:tabnum . l:tabline . l:bufbase
 endfunction
