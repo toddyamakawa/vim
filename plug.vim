@@ -62,7 +62,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'tomasr/molokai'
 Plug 'antlypls/vim-colors-codeschool'
 Plug 'patstockwell/vim-monokai-tasty'
-Plug 'sainnhe/vim-color-desert-night'
+"Plug 'sainnhe/vim-color-desert-night'
 Plug 'YorickPeterse/happy_hacking.vim'
 
 " --- lens.vim ---
@@ -210,6 +210,10 @@ let g:signify_vcs_cmds = {
 	\ 'git': 'git diff --no-color --no-ext-diff -U0 --ignore-all-space --ignore-blank-lines -- %f'
 \ }
 
+" --- Unimpaired ---
+" ]n goes to the next conflict marker
+" [n goes back to the previous conflict marker
+Plug 'tpope/vim-unimpaired'
 
 " --- Linter ---
 " Asynchronous Linting Engine (ALE)
