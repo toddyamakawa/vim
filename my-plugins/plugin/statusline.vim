@@ -6,6 +6,7 @@
 " Highlight groups
 function! StatuslineSetBG(bg)
 	exec 'highlight StatusLine        ctermfg=249 ctermbg='.a:bg
+	exec 'highlight StatusLineWhite   ctermfg=249 ctermbg='.a:bg
 	exec 'highlight StatusLineRed     ctermfg=1   ctermbg='.a:bg
 	exec 'highlight StatusLineGreen   ctermfg=2   ctermbg='.a:bg
 	exec 'highlight StatusLineYellow  ctermfg=3   ctermbg='.a:bg
@@ -57,6 +58,7 @@ function! MyStatusLineLeft()
 	let l:statusline = ''
 
 	let l:default = '%#StatusLine#'
+	let l:white   = '%#StatusLineWhite#'
 	let l:red     = '%#StatusLineRed#'
 	let l:green   = '%#StatusLineGreen#'
 	let l:yellow  = '%#StatusLineYellow#'
@@ -73,7 +75,7 @@ function! MyStatusLineLeft()
 	let l:statusline .= l:yellow.'[%n]'.l:red.'%m'
 
 	" relative/path/to/file
-	let l:statusline .= l:default.'%f'
+	let l:statusline .= l:white.'%f'
 
 	" Return
 	return l:statusline
@@ -84,6 +86,7 @@ function! MyStatusLineRight(width)
 	let l:statusline = ''
 
 	let l:default = '%#StatusLine#'
+	let l:white   = '%#StatusLineWhite#'
 	let l:red     = '%#StatusLineRed#'
 	let l:green   = '%#StatusLineGreen#'
 	let l:yellow  = '%#StatusLineYellow#'
@@ -94,11 +97,11 @@ function! MyStatusLineRight(width)
 	" CurrentLine
 	let l:statusline .= l:yellow.'%6l'
 	" TotalLines
-	let l:statusline .= l:default.'/%L,'
+	let l:statusline .= l:white.'/%L,'
 	" ColumnNumber
 	let l:statusline .= l:yellow.'%-3c'
 	" PercentFile
-	let l:statusline .= l:default.'[%3p%%]'
+	let l:statusline .= l:white.'[%3p%%]'
 
 	" FIXME: Uses current flags, not local
 	"let l:filetype = (&filetype=='') ? l:red.'[none' : l:green.'[%{&filetype}'
@@ -139,6 +142,7 @@ function! MyStatusLine(bufnr, bg, width)
 	let l:statusline = ''
 
 	let l:default = '%#StatusLine#'
+	let l:white   = '%#StatusLineWhite#'
 	let l:red     = '%#StatusLineRed#'
 	let l:green   = '%#StatusLineGreen#'
 	let l:yellow  = '%#StatusLineYellow#'
@@ -153,7 +157,7 @@ function! MyStatusLine(bufnr, bg, width)
 	catch
 		let l:statusline .= l:red.'[FAILED] MyStatusLineLeft()'
 	endtry
-	let l:statusline .= l:default.'%='
+	let l:statusline .= l:white.'%='
 	try
 		let l:statusline .= MyStatusLineRight(a:width)
 	catch
