@@ -1,0 +1,13 @@
+
+# vim: ts=4
+
+# Anchors
+foo: &common
+    key1: value1
+    key2: value2
+foo_copy: *common
+foo_modified:
+    <<: *common
+    key2: new_value2
+    key3: value3
+
