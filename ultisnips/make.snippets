@@ -1,0 +1,32 @@
+
+# vim: ft=snippets
+
+# ==============================================================================
+# POLYGLOT
+# ==============================================================================
+# http://agdr.org/2020/05/14/Polyglot-Makefiles.html
+
+snippet bash "" b
+.ONESHELL:
+bash: SHELL := bash
+bash:
+	@export greeting="Hello"
+	@echo "$${greeting} world from ${SHELL}"
+endsnippet
+
+snippet python "" b
+.ONESHELL:
+python: SHELL := python3
+python:
+	@import platform
+	print('Hello world report python ' + platform.python_version())
+endsnippet
+
+snippet ruby "" b
+.ONESHELL:
+ruby: .SHELLFLAGS := -e
+ruby: SHELL := ruby
+ruby:
+	@puts ['Hello', 'world', 'from', 'ruby', RUBY_VERSION].join(' ')
+endsnippet
+
