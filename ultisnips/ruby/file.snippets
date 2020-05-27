@@ -5,6 +5,13 @@
 # FILE COMMANDS
 # ==============================================================================
 
+snippet access "rescue Errno::EACCES" b
+begin
+	$1
+rescue Errno::EACCES
+end
+endsnippet
+
 snippet basename "" w
 File.basename(${1:"/path/to/file"}, File.extname($1))
 endsnippet
@@ -25,7 +32,7 @@ snippet file "" w
 File.file?(${0:"/path/to/file"})
 endsnippet
 
-snippet grep "definition" w
+snippet grep "" w
 File.readlines(${1:"/path/to/file"}).grep(${2:/regex/})
 endsnippet
 
@@ -48,11 +55,17 @@ endsnippet
 
 snippet touch "" b
 require 'fileutils'
-FileUtils.touch(${1:"/path/to/file"})
+begin
+	FileUtils.touch(${1:"/path/to/file"})
+rescue Errno::EACCES
+end
 endsnippet
 
 snippet write "" w
-File.write(${1:file}, ${2:"string"})
+begin
+	File.write(${1:file}, ${2:"string"})
+rescue Errno::EACCES
+end
 endsnippet
 
 
