@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
+# vim: ft=python ts=4
 dummy='''
 '
-exec /arm/tools/setup/bin/mrun +swdev +python/python/3.6.1 python $0 ${1+"$@"}
+if [[ $(python -c "import platform; print(platform.python_version())") == '3.6.1' ]]; then
+    exec python $0 ${1+"$@"}
+else
+    exec /arm/tools/setup/bin/mrun +swdev +python/python/3.6.1 python $0 ${1+"$@"}
+fi
 '
 '''
 #!/usr/bin/env python
