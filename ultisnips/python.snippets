@@ -2,15 +2,41 @@
 # vim: ft=snippets
 
 # ==============================================================================
+# PRINT
+# ==============================================================================
+snippet stderr ""
+sys.stderr.write(${1:'string'})
+endsnippet
+
+snippet p ""
+print(${1:'string'})
+endsnippet
+
+
+# ==============================================================================
+# LISTS
+# ==============================================================================
+snippet select ""
+list(filter(${1:condition}, ${2:list}))
+endsnippet
+
+
+# ==============================================================================
+# REGEX
+# ==============================================================================
+snippet re ""
+re.compile('${1:regex}')
+endsnippet
+
+
+# ==============================================================================
 # SYSTEM
 # ==============================================================================
-snippet path "Prepend $PYTHON_PATH"
-import sys
+snippet prepend "Prepend $PYTHON_PATH"
 sys.path.insert(0, ${1:'/path/to/somewhere'})
 endsnippet
 
-snippet env "definition"
-import os
+snippet env ""
 os.environ['${1:VARNAME}']
 endsnippet
 

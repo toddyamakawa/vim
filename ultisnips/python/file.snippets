@@ -1,0 +1,37 @@
+
+# vim: ft=snippets
+
+# ==============================================================================
+# FILES
+# ==============================================================================
+
+snippet basename ""
+os.path.basename(${1:'/path/to/dir'})
+endsnippet
+
+snippet dir ""
+os.path.isdir(${1:'/path/to/dir'})
+endsnippet
+
+snippet file ""
+os.path.isfile(${1:'/path/to/file'})
+endsnippet
+
+snippet read ""
+open(${1:'/path/to/file'}).read()
+endsnippet
+
+snippet realpath ""
+os.path.realpath(${1:'/path/to/dir'})
+endsnippet
+
+snippet yaml "Basic YAML"
+yaml.load(open(${1:'/path/to/file.yaml'}).read(), Loader=yaml.BaseLoader)
+endsnippet
+snippet yaml "Safe YAML (recommended for untrusted input)"
+yaml.load(open(${1:'/path/to/file.yaml'}).read(), Loader=yaml.SafeLoader)
+endsnippet
+snippet yaml "Full YAML"
+yaml.load(open(${1:'/path/to/file.yaml'}).read(), Loader=yaml.FullLoader)
+endsnippet
+
