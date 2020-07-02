@@ -123,8 +123,10 @@ Plug 'skywind3000/vim-quickui'
 
 " --- UltiSnips ---
 " :help snippet
-Plug 'SirVer/ultisnips'
-cnoreabbrev ultie UltiSnipsEdit
+if has('python')
+	Plug 'SirVer/ultisnips'
+	cnoreabbrev ultie UltiSnipsEdit
+endif
 
 " Trigger configuration
 " Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe
