@@ -1,6 +1,6 @@
 
 <!---
-vim: wrap linebreak
+vim: wrap linebreak spell
 -->
 
 # HEADER 1
@@ -10,9 +10,7 @@ vim: wrap linebreak
 ##### HEADER 5
 ###### HEADER 6
 
-*italics*
 _italics_
-**bold**
 __bold__
 ~~strikethrough~~
 
