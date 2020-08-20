@@ -42,10 +42,10 @@ endfunction
 " File Info
 " filetype, fileencoding, and fileformat
 function! StatuslineFileInfo(width)
-	let l:filetype = (&filetype=='') ? '%#StatusLineRed#[none' : '%#StatusLineGreen#[%{&filetype}'
-	let l:fileinfo = (a:width<80) ? '' : '.%{&fileencoding?&fileencoding:&encoding}.%{&fileformat}'
-	return l:filetype.l:fileinfo.']'
-	"return '80'
+	"let l:filetype = "%{&filetype==''?'none':&filetype}"
+	"let l:syntax = "%{&syntax==''?'none':&syntax}"
+	let l:fileinfo = (a:width<80) ? '' : '[%{&fileencoding?&fileencoding:&encoding}.%{&fileformat}]'
+	return l:fileinfo
 endfunction
 
 
@@ -103,23 +103,11 @@ function! MyStatusLineRight(width)
 	" PercentFile
 	let l:statusline .= l:white.'[%3p%%]'
 
-	" FIXME: Uses current flags, not local
-	"let l:filetype = (&filetype=='') ? l:red.'[none' : l:green.'[%{&filetype}'
-	"let l:statusline .= l:filetype.l:fileinfo.']'
-
-	" Use this for now
-	let l:filetype = "%{&filetype==''?'none':&filetype}"
-	let l:syntax = "%{&syntax==''?'none':&syntax}"
+	" TODO: Move filetype and syntax into StatuslineFileInfo
 	let l:statusline .= l:green . '[%{&filetype==&syntax?'.
 		\ '&filetype:'.
 		\ '&filetype.".".&syntax}]'
-
-	" REVISIT: Figure out how to make this work
-	"let l:statusline .= '%{StatuslineFileInfo('.a:width.')}'
-
-	" filetype, fileencoding, and fileformat
-	let l:fileinfo = (a:width<80) ? '' : '[%{&fileencoding?&fileencoding:&encoding}.%{&fileformat}]'
-	let l:statusline .= l:green.l:fileinfo
+	let l:statusline .= StatuslineFileInfo(a:width)
 
 	" FileSize
 	let l:statusline .= l:cyan.'[%{StatuslineFileSize()}]'
