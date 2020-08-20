@@ -5,7 +5,7 @@ snippet #!
 #!/usr/bin/env bash
 endsnippet
 
-snippet at_exit "definition" b
+snippet at_exit "at exit" b
 function at_exit() {
 	local RETVAL=$?
 	echo -e "command: $@\nexit: $RETVAL"
@@ -29,10 +29,20 @@ while [[ ${1:condition} ]]; do
 done
 endsnippet
 
+snippet read "read lines" b
+while read line; do
+	$0
+done < <(${1:command})
+endsnippet
+
 snippet then "" w
 then
 	$1
 fi
+endsnippet
+
+snippet 2 "" b
+echo ${1:"fail message"} 1>&2
 endsnippet
 
 snippet fail
@@ -67,7 +77,7 @@ endsnippet
 # VARIABLES
 # ==============================================================================
 snippet current "definition" b
-declare -r CURRENT_DIR=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
+declare -r CURRENT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 endsnippet
 
 snippet string "Multi-line string"
