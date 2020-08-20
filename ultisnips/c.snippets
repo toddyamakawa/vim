@@ -1,0 +1,16 @@
+
+# vim: ft=snippets
+
+# ==============================================================================
+# PRINT
+# ==============================================================================
+snippet pd "printf %d" b
+printf("${1:varname} = %d\n", $1);
+endsnippet
+snippet ps "printf %s" b
+printf("${1:varname} = '%s'\n", $1);
+endsnippet
+snippet px "printf %x" b
+printf("${1:varname} = 0x%x\n", $1);
+endsnippet
+
