@@ -30,3 +30,19 @@ ruby:
 	@puts ['Hello', 'world', 'from', 'ruby', RUBY_VERSION].join(' ')
 endsnippet
 
+
+# ==============================================================================
+# GCC
+# ==============================================================================
+snippet cc "compile C"
+CC=gcc
+CFLAGS=-I.
+CFLAGS+=-Wall
+src := src.c
+
+.PHONY: all
+all: ${1:bintarget}
+$1: $(src)
+	$(CC) $(CFLAGS) -o $@ $(src)
+endsnippet
+
