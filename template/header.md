@@ -1,8 +1,4 @@
 
-<!---
-vim: wrap linebreak spell
--->
-
 # HEADER 1
 ## HEADER 2
 ### HEADER 3
@@ -27,4 +23,6 @@ Code block
 ```ruby
 puts 'ruby syntax highlighting'
 ```
+
+[modeline]: # (vim: set fenc=utf-8 linebreak wrap spell spl=en:)
 
