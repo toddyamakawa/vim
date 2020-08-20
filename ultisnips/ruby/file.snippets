@@ -133,3 +133,8 @@ require 'fileutils'
 FileUtils.symlink(${1:['targets']}, ${2:'dest'}, force: true)
 endsnippet
 
+snippet yaml ""
+require 'yaml'
+YAML.load(File.read(${1:"file.yaml"}))
+endsnippet
+
