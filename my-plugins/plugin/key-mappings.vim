@@ -99,9 +99,9 @@ nnoremap <silent> <Leader>j <C-w>j
 nnoremap <silent> <Leader>k <C-w>k
 nnoremap <silent> <Leader>l <C-w>l
 
-" Resize windows evenly
-" No longer needed when using `lens.vim` plugin
-nnoremap <Leader>= <C-w>=
+" Set horizontal/vertical splits
+nnoremap <C-w>- <C-w>t<C-w>K
+nnoremap <C-w>\| <C-w>t<C-w>H
 
 
 " ==============================================================================
