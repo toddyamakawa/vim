@@ -2,8 +2,9 @@
 " Enable syntax highlighting
 syntax on
 
+" Looks like this option isn't really needed
 " Terminal supports 256 colors
-set t_Co=256
+"set t_Co=256
 
 " Set character encoding
 scriptencoding utf-8
@@ -25,7 +26,7 @@ set showmatch      " Show matching parantheses
 
 " Highlight current line
 "TODO: Make CursorLine change color for insert mode
-set cursorline
+set cursorline cursorcolumn
 "autocmd InsertEnter * highlight CursorLine guifg=something
 "autocmd InsertLeave * highlight CursorLine guifg=something
 
