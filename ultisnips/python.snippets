@@ -2,6 +2,33 @@
 # vim: ft=snippets
 
 # ==============================================================================
+# ARGUMENTS
+# ==============================================================================
+snippet parse ""
+import argparse
+parser = argparse.ArgumentParser(description='$1')
+args = parser.parse_args()
+endsnippet
+
+snippet arg "Generic argument"
+parser.add_argument('${1:NAME}', help='${2:DESCRIPTION}')
+endsnippet
+
+snippet arg "File argument"
+parser.add_argument('-f', '--file', dest='filename', help='${1:DESCRIPTION}', metavar='FILE')
+endsnippet
+
+snippet opt "Verbose argument"
+parser.add_argument('-v', action='store_true', dest='verbose', default=False, help='${1:DESCRIPTION}')
+endsnippet
+
+snippet opt "Debug argument"
+parser.add_argument('-v', action='store_true', dest='debug', default=False, help='${1:DESCRIPTION}')
+endsnippet
+
+
+
+# ==============================================================================
 # PRINT
 # ==============================================================================
 snippet stderr ""
@@ -45,6 +72,7 @@ endsnippet
 # RUN
 # ==============================================================================
 snippet popen ""
+import subprocess
 p = subprocess.Popen(${1:'ls'}, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 for line in p.stdout.readlines():
 	print(line)
@@ -52,6 +80,12 @@ retval = p.wait()
 endsnippet
 
 snippet run ""
-result = subprocess.check_output(${1:'ls -l'}, shell=True)
+import subprocess
+${1:command} = ['ls', '-l']
+print(f"=> {' '.join($1)}")
+result = subprocess.run($1)
+if result.returncode != 0:
+	exit(result.returncode)
 endsnippet
+
 
