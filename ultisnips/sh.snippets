@@ -49,6 +49,16 @@ snippet fail
 { echo -e "${2:file not found}" 1>&2; exit 2; }
 endsnippet
 
+snippet select "Yes/No?" b
+echo 'Do you wish to continue?'
+select yes_no in "Yes" "No"; do
+	case "$yes_no" in
+		Yes) break;;
+		No ) exit;;
+	esac
+done
+endsnippet
+
 
 # ==============================================================================
 # TEST
@@ -76,7 +86,7 @@ endsnippet
 # ==============================================================================
 # VARIABLES
 # ==============================================================================
-snippet current "definition" b
+snippet curr "definition" b
 declare -r CURRENT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 endsnippet
 
