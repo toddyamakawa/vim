@@ -31,3 +31,19 @@ snippet realpath ""
 [file normalize ${1:/path/to/file}]
 endsnippet
 
+snippet curr ""
+set CURRENT_DIR [file dirname [file normalize [info script]]]
+endsnippet
+
+
+# ==============================================================================
+# ENVIRONMENT
+# ==============================================================================
+snippet showenv "definition"
+proc showenv {} {
+	foreach envvar [lsort [array names ::env]] {
+		puts "\[ENV\] \$$envvar=$::env($envvar)"
+	}
+}
+endsnippet
+
