@@ -124,6 +124,7 @@ Plug 'skywind3000/vim-quickui'
 " --- UltiSnips ---
 " :help snippet
 if has('python')
+	"Plug 'SirVer/ultisnips', { 'on': ['UltiSnipsEdit', ''] }
 	Plug 'SirVer/ultisnips'
 	cnoreabbrev ultie UltiSnipsEdit
 endif
@@ -235,6 +236,7 @@ Plug 'lambdalisue/vim-manpager'
 Plug 'tmhedberg/matchit'
 
 " --- Comments ---
+let g:NERDCustomDelimiters = { 'c': { 'left': '//'} }
 Plug 'scrooloose/nerdcommenter'
 
 " --- vim-tmux-focus-events ---
