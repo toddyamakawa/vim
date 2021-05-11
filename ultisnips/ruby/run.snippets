@@ -17,6 +17,18 @@ if status.exitstatus != 0
 end
 endsnippet
 
+snippet run "Open3.capture2e(command)" b
+require 'open3'
+${1:command} = [${2:'ls', '-l'}]
+puts "=> #{$1.join(' ')}"
+stdout_stderr, status = Open3.capture2e(*$1)
+puts stdout_stderr unless stdout_stderr.empty?
+if status.exitstatus != 0
+	$stderr.puts "Command '#{$1.join(' ')}' failed"
+	exit status.exitstatus
+end
+endsnippet
+
 snippet run "PTY.spawn(command)" b
 require 'pty'
 ${1:command} = [${2:'ls', '-l'}]
