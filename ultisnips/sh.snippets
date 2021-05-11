@@ -13,10 +13,6 @@ function at_exit() {
 eval trap "'at_exit \$0 $@'" EXIT
 endsnippet
 
-snippet -
--${1:arg}) $1=\$1; shift;;
-endsnippet
-
 snippet do
 do
 	$1
@@ -33,6 +29,10 @@ snippet read "read lines" b
 while read line; do
 	$0
 done < <(${1:command})
+endsnippet
+
+snippet split "" b
+read -r left right <<< $(echo 'left:right' | tr : ' ')
 endsnippet
 
 snippet then "" w
