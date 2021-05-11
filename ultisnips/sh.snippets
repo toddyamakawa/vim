@@ -61,6 +61,44 @@ endsnippet
 
 
 # ==============================================================================
+# ARGS
+# ==============================================================================
+snippet args "" b
+# ==============================================================================
+# ARGUMENTS
+# ==============================================================================
+while [[ "\$1" =~ ^- ]]; do
+#while [[ $# -ge 1 ]]; do
+	arg="\$1"
+	shift
+	case "$arg" in
+		-v|--verbose) verbosity=1;;
+		-h|--help) echo "$USAGE"; exit;;
+	esac
+done
+endsnippet
+
+snippet -
+-${1:arg}) $1=\$1; shift;;
+endsnippet
+
+
+snippet usage "" b
+declare -r USAGE=$(cat <<-EOF
+USAGE: \$0 [options] <command>
+
+Write a description here.
+
+Options:
+    -h, --help                   Show this message
+
+    -v, --verbose                Increase verbosity
+EOF
+)
+endsnippet
+
+
+# ==============================================================================
 # TEST
 # ==============================================================================
 snippet d "" w
