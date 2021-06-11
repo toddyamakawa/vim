@@ -35,7 +35,9 @@
 " ==============================================================================
 " KEY MAPPINGS
 " ==============================================================================
-nnoremap <silent><unique> <C-p> :Files<CR>
-nnoremap <silent><unique> <C-f> :Lines<CR>
-nnoremap <silent><unique> <C-b> :Buffers<CR>
+nnoremap <silent><unique> <Space>/b :Buffers<CR>
+nnoremap <silent><unique> <Space>/f :Files<CR>
+nnoremap <silent><unique> <Space>/g :GFiles<CR>
+nnoremap <silent><unique> <Space>/l :Lines<CR>
+nnoremap <silent><unique> <Space>// :BLines<CR>
 
