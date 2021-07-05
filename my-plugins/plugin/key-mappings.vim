@@ -136,6 +136,15 @@ nnoremap <silent><unique> glc :lclose<Enter>
 " EDITING
 " ==============================================================================
 
+" REVISIT: Decide which ones to use
+" Black hole registers
+"nnoremap s "_d
+"nnoremap ss "_dd
+"nnoremap S "_D
+nnoremap c "_c
+"nnoremap cc "_c
+nnoremap C "_C
+
 " Toggle expand tab
 nnoremap <Leader><Tab> :set expandtab!<CR>
 
