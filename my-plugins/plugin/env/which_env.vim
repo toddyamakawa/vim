@@ -1,4 +1,7 @@
 
+" ==============================================================================
+" DEFINE WHICHENV()
+" ==============================================================================
 " Function stolen shamelessly from:
 " https://vimways.org/2018/make-your-setup-truly-cross-platform/
 function! WhichEnv() abort
@@ -9,13 +12,15 @@ function! WhichEnv() abort
 	endif
 endfunction
 
-" Leave file before undefined code
+
+" ==============================================================================
+" EXAMPLE
+" ==============================================================================
+
+" Do not run example code
 finish
 
-
-" ==============================================================================
-" HOW TO USE THIS FUNCTION
-" ==============================================================================
+" This is example code
 if (WhichEnv() =~# 'LINUX')
 	SetLinuxEnv()
 elseif (WhichEnv() =~# 'WINDOWS')
