@@ -49,6 +49,10 @@ snippet fail
 { echo -e "${2:file not found}" 1>&2; exit 2; }
 endsnippet
 
+snippet echo ""
+	printf "%s\n" "$1"
+endsnippet
+
 snippet select "Yes/No?" b
 echo 'Do you wish to continue?'
 select yes_no in "Yes" "No"; do
@@ -57,6 +61,12 @@ select yes_no in "Yes" "No"; do
 		No ) exit;;
 	esac
 done
+endsnippet
+
+snippet $> "" b
+printf "\e[33;1m$> %s\e[0m\n" '$1'
+$1
+printf "(exited $?)\n\n"
 endsnippet
 
 
@@ -135,6 +145,13 @@ EOF
 )
 endsnippet
 
+snippet hash ""
+declare -A ${1:hash_name}
+for key in "${!$1[@]}"; do
+	echo "$key ${ARGV[$key]}"
+done
+endsnippet
+
 snippet $ "[$0] filename"
 \$0
 endsnippet
@@ -158,5 +175,18 @@ snippet $ "[$!] PID of last background command"
 endsnippet
 snippet $ "[$_] last argument of previous command"
 \$_
+endsnippet
+
+
+# ==============================================================================
+# TEMPFILE
+# ==============================================================================
+
+snippet mktemp "b"
+tempfile="$(mktemp)"
+function cleanup() {
+	rm "$tempfile"
+}
+trap cleanup EXIT
 endsnippet
 
