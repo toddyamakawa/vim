@@ -43,9 +43,15 @@ call quickui#menu#install("&File", [
 		\ ['&Close Tab',   'tabclose']
 	\ ])
 
+" Edit
+"call quickui#menu#install("&Edit", [
+		"\ ['Delete matching lines', 'exec "normal :g//d\<CR>"']
+	"\ ])
+
 " Plugins
 call quickui#menu#install("&Plugins", [
 		\ ['&ANSI',                'AnsiEsc'],
+		\ ['ALE',                  'ALEToggle'],
 		\ ['&Rainbow Indentation', 'RainbowLevelsToggle'],
 		\ ['&UltiSnips Edit',      'UltiSnipsEdit'],
 		\ ['UltiSnips &List',      'call UltiSnips#ListSnippets()'],
