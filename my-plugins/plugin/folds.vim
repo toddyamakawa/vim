@@ -54,6 +54,9 @@ setlocal foldmethod=expr
 setlocal foldexpr=MyFoldExpr(v:lnum)
 setlocal foldtext=MyFoldText()
 
+" Only fold if there are more than 20 lines
+set foldminlines=21
+
 " Number of fold columns
 set foldcolumn=3
 
