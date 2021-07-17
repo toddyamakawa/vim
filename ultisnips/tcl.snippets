@@ -39,7 +39,7 @@ endsnippet
 # ==============================================================================
 # ENVIRONMENT
 # ==============================================================================
-snippet showenv "definition"
+snippet showenv "print environment"
 proc showenv {} {
 	foreach envvar [lsort [array names ::env]] {
 		puts "\[ENV\] \$$envvar=$::env($envvar)"
@@ -47,3 +47,6 @@ proc showenv {} {
 }
 endsnippet
 
+snippet now "timestamp"
+set now [clock format [clock seconds] -format %Y%m%d-%H%M%S]
+endsnippet
