@@ -50,6 +50,9 @@ noremap : ,
 "inoremap <Left> <nop>
 "inoremap <Right> <nop>
 
+" Select most recent paste
+nnoremap gp `[v`]
+
 
 " ==============================================================================
 " TABS
