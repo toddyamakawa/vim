@@ -34,6 +34,9 @@ Soft wrap text based on words rather than characters:
 Examples
 ================================================================================
 - EmilOhlsson's [commit](https://github.com/EmilOhlsson/myconf/commit/8b56997713da7e3cb5746a807114aebf812c5075) switching to coc.vim
+- [Why We Vim](https://changelog.com/podcast/450)
+  - [Gary's .vimrc](https://github.com/garybernhardt/dotfiles/blob/main/.vimrc)
+  - [Drew's .vimrc](https://github.com/nelstrom/dotfiles/blob/master/vimrc)
 
 
 Other Resources

@@ -199,6 +199,7 @@ Plug 'unblevable/quick-scope'
 " Filesystem explorer
 " :help NERDTree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" TODO: https://github.com/noopkat/dotfiles/blob/e70a3c0871045970ce3dfbeadb0d5eede87c740e/.vimrc#L26
 
 " --- nnn ---
 Plug 'mcchrish/nnn.vim'
