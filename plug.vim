@@ -49,7 +49,8 @@ vmap <silent><unique> gk <Plug>(easymotion-k)
 "nmap <silent><unique> 1n <Plug>(easymotion-n)
 "nmap <silent><unique> 1N <Plug>(easymotion-N)
 "nmap <silent><unique> 1s <Plug>(easymotion-s)
-nmap <silent><unique> // <Plug>(easymotion-s)
+"nmap <silent><unique> // <Plug>(easymotion-s)
+nmap <silent><unique> Z <Plug>(easymotion-s)
 
 
 " ==============================================================================
@@ -64,6 +65,8 @@ Plug 'antlypls/vim-colors-codeschool'
 Plug 'patstockwell/vim-monokai-tasty'
 "Plug 'sainnhe/vim-color-desert-night'
 Plug 'YorickPeterse/happy_hacking.vim'
+Plug 'rafalbromirski/vim-aurora'
+" TODO: https://github.com/caksoylar/vim-mysticaltutor
 
 " --- lens.vim ---
 " Automatically resizes windows
@@ -73,6 +76,7 @@ Plug 'camspiers/lens.vim'
 
 " --- context.vim ---
 " Shows context (e.g. functions, loops, conditions) of current buffer
+"let g:context_enabled = 1
 Plug 'wellle/context.vim'
 
 " --- Limelight ---
@@ -120,6 +124,9 @@ Plug 'skywind3000/vim-quickui'
 " ==============================================================================
 " INTEGRATION
 " ==============================================================================
+
+
+Plug 'mg979/vim-visual-multi'
 
 " --- UltiSnips ---
 " :help snippet
@@ -193,6 +200,9 @@ Plug 'unblevable/quick-scope'
 " :help NERDTree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
+" --- nnn ---
+Plug 'mcchrish/nnn.vim'
+
 " --- Ctag Browser ---
 " :help tagbar
 Plug 'majutsushi/tagbar'
@@ -213,16 +223,11 @@ let g:signify_vcs_cmds = {
 	\ 'git': 'git diff --no-color --no-ext-diff -U0 --ignore-all-space --ignore-blank-lines -- %f'
 \ }
 
-" --- Unimpaired ---
-" ]n goes to the next conflict marker
-" [n goes back to the previous conflict marker
-Plug 'tpope/vim-unimpaired'
-
 " --- Linter ---
 " Asynchronous Linting Engine (ALE)
 " :help ale
 "Plug 'w0rp/ale'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 
 " Ruby linter
 Plug 'bbatsov/rubocop'
