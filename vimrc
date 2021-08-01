@@ -19,6 +19,9 @@ filetype indent plugin on
 " --- .vim Directory ---
 runtime ~/.vim
 
+"let g:context_border_char = '▬'
+let g:context_border_char = '-'
+
 
 " ==============================================================================
 " GENERAL SETTINGS
@@ -49,10 +52,19 @@ set splitbelow
 " ==============================================================================
 
 " --- Color Schemes - --
+"set term=xterm-256color
+set t_Co=256
+
 silent! colorscheme jellybeans " Favorite colorscheme
 "silent! colorscheme codeschool
 "silent! colorscheme molokai
 "silent colorscheme vim-monokai-tasty
+
+" Aurora settings
+set termguicolors
+set background=dark
+silent! colorscheme aurora
+
 
 "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -62,6 +74,7 @@ silent! colorscheme jellybeans " Favorite colorscheme
 "let &t_EI = "\<Esc>[2 q"
 
 " Change background color beyond column 80
+" TODO: https://github.com/jerodsanto/dotfiles/blob/8ced1bda82c0ffb302013432f7e92157176a5cc7/vimrc#L77
 let &colorcolumn=join(range(81,999),",")
 au InsertEnter * highlight ColorColumn guibg=#000000 ctermbg=16
 au InsertLeave * highlight clear ColorColumn
