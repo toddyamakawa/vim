@@ -61,9 +61,9 @@ silent! colorscheme jellybeans " Favorite colorscheme
 "silent colorscheme vim-monokai-tasty
 
 " Aurora settings
-set termguicolors
+"set termguicolors
 set background=dark
-silent! colorscheme aurora
+"silent! colorscheme aurora
 
 
 "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
